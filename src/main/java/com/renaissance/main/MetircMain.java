@@ -27,6 +27,7 @@ public class MetircMain {
 
         metricStream.print();
 
+
         env.execute("metricStream");
 
 
