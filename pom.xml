@@ -40,7 +40,7 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka_2.11</artifactId>
-            <version>2.3.0</version>
+            <version>0.10.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
@@ -60,7 +60,7 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka_2.11</artifactId>
-            <version>1.12.0</version>
+            <version>1.13.6</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
