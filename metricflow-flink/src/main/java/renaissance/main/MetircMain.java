@@ -2,8 +2,12 @@ package renaissance.main;
 
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import renaissance.bean.MetricBean;
+import renaissance.profunc.MetricBeanMap;
+import renaissance.sink.MetricSink;
 
 import java.util.Properties;
 
@@ -25,8 +29,8 @@ public class MetircMain {
         FlinkKafkaConsumer<String> kafkaConsumer = new FlinkKafkaConsumer<>("mem.used", SimpleStringSchema.class.newInstance(), kafkaProps);
         DataStreamSource<String> metricStream = env.addSource(kafkaConsumer);
 
-        metricStream.print();
-
+        SingleOutputStreamOperator<MetricBean> beanStream = metricStream.map(new MetricBeanMap());
+        beanStream.addSink(new MetricSink());
 
         env.execute("metricStream");
 
