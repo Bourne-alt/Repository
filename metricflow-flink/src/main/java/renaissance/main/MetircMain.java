@@ -1,6 +1,8 @@
 package renaissance.main;
 
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.streaming.api.datastream.ConnectedStreams;
+import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -26,8 +28,11 @@ public class MetircMain {
         kafkaProps.setProperty("auto.offset.reset", "earliest");
         kafkaProps.setProperty("group.id", "metric_consumer_g");
 
-        FlinkKafkaConsumer<String> kafkaConsumer = new FlinkKafkaConsumer<>("mem.used", SimpleStringSchema.class.newInstance(), kafkaProps);
-        DataStreamSource<String> metricStream = env.addSource(kafkaConsumer);
+        FlinkKafkaConsumer<String> kafkaCpuUse = new FlinkKafkaConsumer<>("mem.used", SimpleStringSchema.class.newInstance(), kafkaProps);
+        FlinkKafkaConsumer<String> kafkaCpuUsage = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProps);
+        DataStreamSource<String> memUsedStream = env.addSource(kafkaCpuUse);
+        DataStreamSource<String> cpuUsageStream = env.addSource(kafkaCpuUsage);
+        DataStream<String> metricStream = memUsedStream.union(cpuUsageStream);
 
         SingleOutputStreamOperator<MetricBean> beanStream = metricStream.map(new MetricBeanMap());
         beanStream.addSink(new MetricSink());
