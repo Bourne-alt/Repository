@@ -41,7 +41,6 @@ public class KafkaSchema implements DebeziumDeserializationSchema<String> {
             result.put("value",after.get("value"));
             result.put("timestamp",after.get("timestamp"));
 
-
         }
 
 

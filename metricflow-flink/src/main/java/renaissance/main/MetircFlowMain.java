@@ -13,7 +13,7 @@ import renaissance.sink.MetricSink;
 
 import java.util.Properties;
 
-public class MetircMain {
+public class MetircFlowMain {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
