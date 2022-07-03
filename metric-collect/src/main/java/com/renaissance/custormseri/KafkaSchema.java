@@ -2,22 +2,24 @@ package com.renaissance.custormseri;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ververica.cdc.debezium.DebeziumDeserializationSchema;
+import io.debezium.data.Envelope;
 import org.apache.flink.api.common.typeinfo.BasicTypeInfo;
 import org.apache.flink.api.common.typeinfo.TypeInformation;
 import org.apache.flink.util.Collector;
+import org.apache.kafka.connect.data.Field;
+import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.source.SourceRecord;
 
+import java.util.List;
 
 
 public class KafkaSchema implements DebeziumDeserializationSchema<String> {
 
     /**
-     *
      * @param sourceRecord
      * @param collector
-     * @throws Exception
-     *  {"id":972795,"name":"mem.used","hostname":"svr1002","value":9686,"timestamp":1655012826}
+     * @throws Exception {"id":972795,"name":"mem.used","hostname":"svr1002","value":9686,"timestamp":1655012826}
      */
     @Override
     public void deserialize(SourceRecord sourceRecord, Collector<String> collector) throws Exception {
@@ -26,27 +28,44 @@ public class KafkaSchema implements DebeziumDeserializationSchema<String> {
         JSONObject result = new JSONObject();
 
         String topic = sourceRecord.topic();
-        String[] fields = topic.split("\\.");
+
 
         //
-        Struct value = (Struct)sourceRecord.value();
+        Struct value = (Struct) sourceRecord.value();
+        Struct before = value.getStruct("before");
         Struct after = value.getStruct("after");
 //Struct{id=1122553,name=cpu.usage,hostname=svr1002,value=99999,timestamp=1655558465000}
 
-        if(after !=null){
-            //获取列信息
-            result.put("id",after.get("id"));
-            result.put("name",after.get("name"));
-            result.put("hostname",after.get("hostname"));
-            result.put("value",after.get("value"));
-            result.put("timestamp",after.get("timestamp"));
+        //before数据
+        JSONObject beforeJson = new JSONObject();
+        if (before != null) {
+            Schema schema = before.schema();
+            List<Field> fields = schema.fields();
+            for (Field field : fields) {
+                beforeJson.put(field.name(), before.get(field));
+            }
 
         }
+        result.put("before", beforeJson);
+
+        JSONObject afterJson = new JSONObject();
+        //after数据
+        if (after != null) {
+            //获取列信息
+            Schema schema = after.schema();
+            List<Field> fields = schema.fields();
+            for (Field field : fields) {
+                afterJson.put(field.name(), after.get(field));
+            }
+
+        }
+        result.put("after", afterJson);
+
+        Envelope.Operation operation = Envelope.operationFor(sourceRecord);
+        result.put("op", operation);
 
 
         collector.collect(result.toJSONString());
-
-
 
 
     }

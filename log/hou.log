@@ -19461,3 +19461,875 @@ org.apache.flink.runtime.taskexecutor.slot.SlotNotFoundException: Could not find
 [WARN][22-07-02][org.apache.flink.streaming.connectors.kafka.internals.KafkaFetcher]Error while closing Kafka consumer
 java.lang.NullPointerException
 	at org.apache.flink.streaming.connectors.kafka.internals.KafkaConsumerThread.run(KafkaConsumerThread.java:283)
+[DEBUG][22-07-03][org.apache.flink.api.java.ClosureCleaner]Dig to clean the java.util.Properties
+[DEBUG][22-07-03][org.apache.flink.api.java.ClosureCleaner]Dig to clean the java.lang.Long
+[DEBUG][22-07-03][org.apache.flink.api.java.ClosureCleaner]Dig to clean the java.util.Properties
+[DEBUG][22-07-03][org.apache.flink.api.java.ClosureCleaner]Dig to clean the java.lang.Long
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraphGenerator]Transforming OneInputTransformation{id=4, name='Map', outputType=PojoType<renaissance.bean.MetricBean, fields = [hostName: String, id: String, name: String, timestamp: String, value: String]>, parallelism=1}
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraphGenerator]Transforming UnionTransformation{id=3, name='Union', outputType=String, parallelism=1}
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraphGenerator]Transforming LegacySourceTransformation{id=1, name='Custom Source', outputType=String, parallelism=1}
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraph]Vertex: 1
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraphGenerator]Transforming LegacySourceTransformation{id=2, name='Custom Source', outputType=String, parallelism=1}
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraph]Vertex: 2
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraph]Vertex: 4
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraphGenerator]Transforming LegacySinkTransformation{id=5, name='Unnamed', outputType=GenericType<java.lang.Object>, parallelism=1}
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraph]Vertex: 5
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraphHasherV2]Generated hash 'bc764cd8ddf7a0cff126f51c16239658' for node 'Source: Custom Source-1' {id: 1, parallelism: 1, user function: org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer}
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraphHasherV2]Generated hash 'feca28aff5a3958840bee985ee7de4d3' for node 'Source: Custom Source-2' {id: 2, parallelism: 1, user function: org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer}
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraphHasherV2]Generated hash '4bf7c1955ffe56e2106d666433eaf137' for node 'Map-4' {id: 4, parallelism: 1, user function: renaissance.profunc.MetricBeanMap}
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamGraphHasherV2]Generated hash 'ccb29b5204e83e8a588b3828afaa7015' for node 'Sink: Unnamed-5' {id: 5, parallelism: 1, user function: renaissance.sink.MetricSink}
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamingJobGraphGenerator]Parallelism set: 1 for 4
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamingJobGraphGenerator]Parallelism set: 1 for 1
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamingJobGraphGenerator]CONNECTED: ForwardPartitioner - 1 -> 4
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamingJobGraphGenerator]Parallelism set: 1 for 2
+[DEBUG][22-07-03][org.apache.flink.streaming.api.graph.StreamingJobGraphGenerator]CONNECTED: ForwardPartitioner - 2 -> 4
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutorResourceUtils]The configuration option taskmanager.cpu.cores required for local execution is not set, setting it to the maximal possible value.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutorResourceUtils]The configuration option taskmanager.memory.task.heap.size required for local execution is not set, setting it to the maximal possible value.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutorResourceUtils]The configuration option taskmanager.memory.task.off-heap.size required for local execution is not set, setting it to the maximal possible value.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutorResourceUtils]The configuration option taskmanager.memory.network.min required for local execution is not set, setting it to its default value 64 mb.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutorResourceUtils]The configuration option taskmanager.memory.network.max required for local execution is not set, setting it to its default value 64 mb.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutorResourceUtils]The configuration option taskmanager.memory.managed.size required for local execution is not set, setting it to its default value 128 mb.
+[INFO][22-07-03][org.apache.flink.runtime.minicluster.MiniCluster]Starting Flink Mini Cluster
+[DEBUG][22-07-03][org.apache.flink.runtime.minicluster.MiniCluster]Using configuration MiniClusterConfiguration {singleRpcService=SHARED, numTaskManagers=1, commonBindAddress='null', config={taskmanager.memory.network.min=64 mb, taskmanager.cpu.cores=1000000.0, taskmanager.memory.task.off-heap.size=1099511627776 bytes, taskmanager.memory.jvm-metaspace.size=256 mb, execution.target=local, taskmanager.memory.jvm-overhead.min=1 gb, rest.bind-port=0, taskmanager.memory.network.max=64 mb, taskmanager.memory.framework.off-heap.size=128 mb, execution.attached=true, taskmanager.memory.managed.size=128 mb, taskmanager.memory.framework.heap.size=128 mb, parallelism.default=8, taskmanager.numberOfTaskSlots=1, taskmanager.memory.task.heap.size=1099511627776 bytes, rest.address=localhost, taskmanager.memory.jvm-overhead.max=1 gb, akka.ask.timeout=5 min}}
+[INFO][22-07-03][org.apache.flink.runtime.minicluster.MiniCluster]Starting Metrics Registry
+[INFO][22-07-03][org.apache.flink.runtime.metrics.MetricRegistryImpl]No metrics reporter configured, no metrics will be exposed/reported.
+[INFO][22-07-03][org.apache.flink.runtime.minicluster.MiniCluster]Starting RPC Service(s)
+[INFO][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils]Trying to start local actor system
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils]Using akka configuration
+ Config(SimpleConfigObject({"akka":{"actor":{"default-dispatcher":{"executor":"fork-join-executor","fork-join-executor":{"parallelism-factor":1,"parallelism-max":4,"parallelism-min":2},"throughput":15},"guardian-supervisor-strategy":"org.apache.flink.runtime.akka.EscalatingSupervisorStrategy","supervisor-dispatcher":{"executor":"thread-pool-executor","thread-pool-executor":{"core-pool-size-max":1,"core-pool-size-min":1},"type":"Dispatcher"},"warn-about-java-serializer-usage":"off"},"daemonic":"off","jvm-exit-on-fatal-error":"on","log-config-on-start":"off","log-dead-letters":"off","log-dead-letters-during-shutdown":"off","logger-startup-timeout":"30s","loggers":["akka.event.slf4j.Slf4jLogger"],"logging-filter":"akka.event.slf4j.Slf4jLoggingFilter","loglevel":"DEBUG","serialize-messages":"off","stdout-loglevel":"OFF"}}))
+[INFO][22-07-03][akka.event.slf4j.Slf4jLogger]Slf4jLogger started
+[DEBUG][22-07-03][akka.event.EventStream]logger log1-Slf4jLogger started
+[DEBUG][22-07-03][akka.event.EventStream]Default Loggers started
+[INFO][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils]Actor system started at akka://flink
+[INFO][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils]Trying to start local actor system
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils]Using akka configuration
+ Config(SimpleConfigObject({"akka":{"actor":{"default-dispatcher":{"executor":"thread-pool-executor","thread-pool-executor":{"core-pool-size-max":1,"core-pool-size-min":1},"thread-priority":1,"throughput":15,"type":"akka.dispatch.PriorityThreadsDispatcher"},"guardian-supervisor-strategy":"org.apache.flink.runtime.akka.EscalatingSupervisorStrategy","supervisor-dispatcher":{"executor":"thread-pool-executor","thread-pool-executor":{"core-pool-size-max":1,"core-pool-size-min":1},"type":"Dispatcher"},"warn-about-java-serializer-usage":"off"},"daemonic":"off","jvm-exit-on-fatal-error":"on","log-config-on-start":"off","log-dead-letters":"off","log-dead-letters-during-shutdown":"off","logger-startup-timeout":"30s","loggers":["akka.event.slf4j.Slf4jLogger"],"logging-filter":"akka.event.slf4j.Slf4jLoggingFilter","loglevel":"DEBUG","serialize-messages":"off","stdout-loglevel":"OFF"}}))
+[INFO][22-07-03][akka.event.slf4j.Slf4jLogger]Slf4jLogger started
+[DEBUG][22-07-03][akka.event.EventStream]logger log1-Slf4jLogger started
+[DEBUG][22-07-03][akka.event.EventStream]Default Loggers started
+[INFO][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcServiceUtils]Actor system started at akka://flink-metrics
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.SupervisorActor]Starting AkkaRpcActor with name MetricQueryService.
+[INFO][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Starting RPC endpoint for org.apache.flink.runtime.metrics.dump.MetricQueryService at akka://flink-metrics/user/rpc/MetricQueryService .
+[INFO][22-07-03][org.apache.flink.runtime.minicluster.MiniCluster]Starting high-availability services
+[INFO][22-07-03][org.apache.flink.runtime.blob.BlobServer]Created BLOB server storage directory /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/blobStore-b2c66d1b-e666-403c-a25a-7245460838f2
+[DEBUG][22-07-03][org.apache.flink.util.NetUtils]Trying to open socket on port 0
+[INFO][22-07-03][org.apache.flink.runtime.blob.BlobServer]Started BLOB server at 0.0.0.0:50957 - max concurrent requests: 50 - max backlog: 1000
+[INFO][22-07-03][org.apache.flink.runtime.blob.PermanentBlobCache]Created BLOB cache storage directory /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/blobStore-1eb9116d-33b2-42f4-9d61-582837fc51e7
+[INFO][22-07-03][org.apache.flink.runtime.blob.TransientBlobCache]Created BLOB cache storage directory /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/blobStore-6725c9bd-55f6-41df-8b5c-8a346e49f471
+[INFO][22-07-03][org.apache.flink.runtime.minicluster.MiniCluster]Starting 1 TaskManger(s)
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskManagerRunner]Starting TaskManager with ResourceID: bbf70228-c10d-44c9-a76c-32a55c424b13
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskManagerServices]Temporary file directory '/var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T': total 460 GB, usable 367 GB (79.78% usable)
+[INFO][22-07-03][org.apache.flink.runtime.io.disk.FileChannelManagerImpl]FileChannelManager uses directory /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/flink-io-c8ebae24-cf96-4078-bd92-242ef985fb3d for spill files.
+[INFO][22-07-03][org.apache.flink.runtime.io.disk.FileChannelManagerImpl]FileChannelManager uses directory /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/flink-netty-shuffle-10d8c5bf-76b5-4966-ad87-9845450dba23 for spill files.
+[INFO][22-07-03][org.apache.flink.runtime.io.network.buffer.NetworkBufferPool]Allocated 64 MB for network buffer pool (number of memory segments: 2048, bytes per segment: 32768).
+[INFO][22-07-03][org.apache.flink.runtime.io.network.NettyShuffleEnvironment]Starting the network environment and its components.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.NettyShuffleEnvironment]Starting network connection manager
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.KvStateService]Starting the kvState service and its components.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskManagerConfiguration]Messages have a max timeout of 300000 ms
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.SupervisorActor]Starting AkkaRpcActor with name taskmanager_0.
+[INFO][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Starting RPC endpoint for org.apache.flink.runtime.taskexecutor.TaskExecutor at akka://flink/user/rpc/taskmanager_0 .
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService]Start job leader service.
+[INFO][22-07-03][org.apache.flink.runtime.filecache.FileCache]User file cache uses directory /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/flink-dist-cache-af431a74-befe-46a7-a435-8abf4eafca4b
+[DEBUG][22-07-03][org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory]Starting Dispatcher REST endpoint.
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Starting rest endpoint.
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.logging.InternalLoggerFactory]Using SLF4J as the default logging framework
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.InternalThreadLocalMap]-Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.InternalThreadLocalMap]-Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+[WARN][22-07-03][org.apache.flink.runtime.webmonitor.WebMonitorUtils]Log file environment variable 'log.file' is not set.
+[WARN][22-07-03][org.apache.flink.runtime.webmonitor.WebMonitorUtils]JobManager log files are unavailable in the web dashboard. Log file location not found in environment variable 'log.file' or configuration key 'web.log.path'.
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent]Platform: MacOS
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent0]-Dio.netty.noUnsafe: false
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent0]Java version: 8
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent0]sun.misc.Unsafe.theUnsafe: available
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent0]sun.misc.Unsafe.copyMemory: available
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent0]java.nio.Buffer.address: available
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent0]direct buffer constructor: available
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent0]java.nio.Bits.unaligned: available, true
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent0]jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent0]java.nio.DirectByteBuffer.<init>(long, int): available
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent]sun.misc.Unsafe: available
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent]-Dio.netty.tmpdir: /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T (java.io.tmpdir)
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent]-Dio.netty.bitMode: 64 (sun.arch.data.model)
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent]-Dio.netty.maxDirectMemory: 1908932608 bytes
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent]-Dio.netty.uninitializedArrayAllocationThreshold: -1
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.CleanerJava6]java.nio.ByteBuffer.cleaner(): available
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent]-Dio.netty.noPreferDirect: false
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.ShutdownHandler@ad9e63e under DELETE@/v1/cluster.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.ShutdownHandler@ad9e63e under DELETE@/cluster.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.DashboardConfigHandler@6c302a1d under GET@/v1/config.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.DashboardConfigHandler@6c302a1d under GET@/config.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.dataset.ClusterDataSetListHandler@33a3c44a under GET@/v1/datasets.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.dataset.ClusterDataSetListHandler@33a3c44a under GET@/datasets.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.dataset.ClusterDataSetDeleteHandlers$ClusterDataSetDeleteStatusHandler@5fcfca62 under GET@/v1/datasets/delete/:triggerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.dataset.ClusterDataSetDeleteHandlers$ClusterDataSetDeleteStatusHandler@5fcfca62 under GET@/datasets/delete/:triggerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.dataset.ClusterDataSetDeleteHandlers$ClusterDataSetDeleteTriggerHandler@499ef98e under DELETE@/v1/datasets/:datasetid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.dataset.ClusterDataSetDeleteHandlers$ClusterDataSetDeleteTriggerHandler@499ef98e under DELETE@/datasets/:datasetid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarListHandler@24934262 under GET@/v1/jars.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarListHandler@24934262 under GET@/jars.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarUploadHandler@93f432e under POST@/v1/jars/upload.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarUploadHandler@93f432e under POST@/jars/upload.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarDeleteHandler@288214b1 under DELETE@/v1/jars/:jarid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarDeleteHandler@288214b1 under DELETE@/jars/:jarid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarPlanHandler@16eedaa6 under GET@/v1/jars/:jarid/plan.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarPlanHandler@16eedaa6 under GET@/jars/:jarid/plan.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarPlanHandler@28501a4b under POST@/v1/jars/:jarid/plan.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarPlanHandler@28501a4b under POST@/jars/:jarid/plan.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarRunHandler@5b051a5c under POST@/v1/jars/:jarid/run.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.webmonitor.handlers.JarRunHandler@5b051a5c under POST@/jars/:jarid/run.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.ClusterConfigHandler@639aba11 under GET@/v1/jobmanager/config.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.ClusterConfigHandler@639aba11 under GET@/jobmanager/config.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.JobManagerLogFileHandler@341672e under GET@/v1/jobmanager/log.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.JobManagerLogFileHandler@341672e under GET@/jobmanager/log.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.JobManagerLogListHandler@2bebb74f under GET@/v1/jobmanager/logs.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.JobManagerLogListHandler@2bebb74f under GET@/jobmanager/logs.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.JobManagerCustomLogHandler@58cf8f94 under GET@/v1/jobmanager/logs/:filename.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.JobManagerCustomLogHandler@58cf8f94 under GET@/jobmanager/logs/:filename.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.JobManagerMetricsHandler@6e33fcae under GET@/v1/jobmanager/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.JobManagerMetricsHandler@6e33fcae under GET@/jobmanager/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.JobManagerLogFileHandler@66c38e51 under GET@/v1/jobmanager/stdout.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.JobManagerLogFileHandler@66c38e51 under GET@/jobmanager/stdout.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobIdsHandler@10641c09 under GET@/v1/jobs.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobIdsHandler@10641c09 under GET@/jobs.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobSubmitHandler@34f392be under POST@/v1/jobs.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobSubmitHandler@34f392be under POST@/jobs.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.AggregatingJobsMetricsHandler@4554de02 under GET@/v1/jobs/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.AggregatingJobsMetricsHandler@4554de02 under GET@/jobs/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobsOverviewHandler@3f9f71ff under GET@/v1/jobs/overview.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobsOverviewHandler@3f9f71ff under GET@/jobs/overview.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobDetailsHandler@fabb651 under GET@/v1/jobs/:jobid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobDetailsHandler@fabb651 under GET@/jobs/:jobid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobCancellationHandler@27e5b378 under PATCH@/v1/jobs/:jobid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobCancellationHandler@27e5b378 under PATCH@/jobs/:jobid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobAccumulatorsHandler@4422dd48 under GET@/v1/jobs/:jobid/accumulators.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobAccumulatorsHandler@4422dd48 under GET@/jobs/:jobid/accumulators.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.checkpoints.CheckpointingStatisticsHandler@764cba under GET@/v1/jobs/:jobid/checkpoints.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.checkpoints.CheckpointingStatisticsHandler@764cba under GET@/jobs/:jobid/checkpoints.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.checkpoints.CheckpointConfigHandler@523d6bdb under GET@/v1/jobs/:jobid/checkpoints/config.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.checkpoints.CheckpointConfigHandler@523d6bdb under GET@/jobs/:jobid/checkpoints/config.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.checkpoints.CheckpointStatisticDetailsHandler@58496c97 under GET@/v1/jobs/:jobid/checkpoints/details/:checkpointid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.checkpoints.CheckpointStatisticDetailsHandler@58496c97 under GET@/jobs/:jobid/checkpoints/details/:checkpointid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.checkpoints.TaskCheckpointStatisticDetailsHandler@ad3324b under GET@/v1/jobs/:jobid/checkpoints/details/:checkpointid/subtasks/:vertexid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.checkpoints.TaskCheckpointStatisticDetailsHandler@ad3324b under GET@/jobs/:jobid/checkpoints/details/:checkpointid/subtasks/:vertexid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobConfigHandler@3872bc37 under GET@/v1/jobs/:jobid/config.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobConfigHandler@3872bc37 under GET@/jobs/:jobid/config.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.coordination.ClientCoordinationHandler@1a87b51 under POST@/v1/jobs/:jobid/coordinators/:operatorid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.coordination.ClientCoordinationHandler@1a87b51 under POST@/jobs/:jobid/coordinators/:operatorid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobExceptionsHandler@12968227 under GET@/v1/jobs/:jobid/exceptions.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobExceptionsHandler@12968227 under GET@/jobs/:jobid/exceptions.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobExecutionResultHandler@144ab54 under GET@/v1/jobs/:jobid/execution-result.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobExecutionResultHandler@144ab54 under GET@/jobs/:jobid/execution-result.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.JobMetricsHandler@2cfa2c4f under GET@/v1/jobs/:jobid/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.JobMetricsHandler@2cfa2c4f under GET@/jobs/:jobid/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobPlanHandler@6ecab872 under GET@/v1/jobs/:jobid/plan.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobPlanHandler@6ecab872 under GET@/jobs/:jobid/plan.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.rescaling.RescalingHandlers$RescalingTriggerHandler@48eb9836 under PATCH@/v1/jobs/:jobid/rescaling.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.rescaling.RescalingHandlers$RescalingTriggerHandler@48eb9836 under PATCH@/jobs/:jobid/rescaling.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.rescaling.RescalingHandlers$RescalingStatusHandler@6c518474 under GET@/v1/jobs/:jobid/rescaling/:triggerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.rescaling.RescalingHandlers$RescalingStatusHandler@6c518474 under GET@/jobs/:jobid/rescaling/:triggerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointHandlers$SavepointTriggerHandler@11b455e5 under POST@/v1/jobs/:jobid/savepoints.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointHandlers$SavepointTriggerHandler@11b455e5 under POST@/jobs/:jobid/savepoints.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointHandlers$SavepointStatusHandler@2a066689 under GET@/v1/jobs/:jobid/savepoints/:triggerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointHandlers$SavepointStatusHandler@2a066689 under GET@/jobs/:jobid/savepoints/:triggerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointHandlers$StopWithSavepointHandler@3e3861d7 under POST@/v1/jobs/:jobid/stop.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointHandlers$StopWithSavepointHandler@3e3861d7 under POST@/jobs/:jobid/stop.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexDetailsHandler@5e2a3040 under GET@/v1/jobs/:jobid/vertices/:vertexid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexDetailsHandler@5e2a3040 under GET@/jobs/:jobid/vertices/:vertexid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexAccumulatorsHandler@6d025d1d under GET@/v1/jobs/:jobid/vertices/:vertexid/accumulators.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexAccumulatorsHandler@6d025d1d under GET@/jobs/:jobid/vertices/:vertexid/accumulators.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexBackPressureHandler@74294c1a under GET@/v1/jobs/:jobid/vertices/:vertexid/backpressure.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexBackPressureHandler@74294c1a under GET@/jobs/:jobid/vertices/:vertexid/backpressure.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexFlameGraphHandler$DisabledJobVertexFlameGraphHandler@9e2ad91 under GET@/v1/jobs/:jobid/vertices/:vertexid/flamegraph.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexFlameGraphHandler$DisabledJobVertexFlameGraphHandler@9e2ad91 under GET@/jobs/:jobid/vertices/:vertexid/flamegraph.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.JobVertexMetricsHandler@64524dd under GET@/v1/jobs/:jobid/vertices/:vertexid/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.JobVertexMetricsHandler@64524dd under GET@/jobs/:jobid/vertices/:vertexid/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtasksAllAccumulatorsHandler@79d06bbd under GET@/v1/jobs/:jobid/vertices/:vertexid/subtasks/accumulators.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtasksAllAccumulatorsHandler@79d06bbd under GET@/jobs/:jobid/vertices/:vertexid/subtasks/accumulators.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.AggregatingSubtasksMetricsHandler@47a7a101 under GET@/v1/jobs/:jobid/vertices/:vertexid/subtasks/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.AggregatingSubtasksMetricsHandler@47a7a101 under GET@/jobs/:jobid/vertices/:vertexid/subtasks/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtaskCurrentAttemptDetailsHandler@5bb51241 under GET@/v1/jobs/:jobid/vertices/:vertexid/subtasks/:subtaskindex.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtaskCurrentAttemptDetailsHandler@5bb51241 under GET@/jobs/:jobid/vertices/:vertexid/subtasks/:subtaskindex.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtaskExecutionAttemptDetailsHandler@7479b626 under GET@/v1/jobs/:jobid/vertices/:vertexid/subtasks/:subtaskindex/attempts/:attempt.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtaskExecutionAttemptDetailsHandler@7479b626 under GET@/jobs/:jobid/vertices/:vertexid/subtasks/:subtaskindex/attempts/:attempt.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtaskExecutionAttemptAccumulatorsHandler@e8ea697 under GET@/v1/jobs/:jobid/vertices/:vertexid/subtasks/:subtaskindex/attempts/:attempt/accumulators.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtaskExecutionAttemptAccumulatorsHandler@e8ea697 under GET@/jobs/:jobid/vertices/:vertexid/subtasks/:subtaskindex/attempts/:attempt/accumulators.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.SubtaskMetricsHandler@74dbb1ee under GET@/v1/jobs/:jobid/vertices/:vertexid/subtasks/:subtaskindex/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.SubtaskMetricsHandler@74dbb1ee under GET@/jobs/:jobid/vertices/:vertexid/subtasks/:subtaskindex/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtasksTimesHandler@70f822e under GET@/v1/jobs/:jobid/vertices/:vertexid/subtasktimes.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.SubtasksTimesHandler@70f822e under GET@/jobs/:jobid/vertices/:vertexid/subtasktimes.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexTaskManagersHandler@3efedc6f under GET@/v1/jobs/:jobid/vertices/:vertexid/taskmanagers.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobVertexTaskManagersHandler@3efedc6f under GET@/jobs/:jobid/vertices/:vertexid/taskmanagers.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.JobVertexWatermarksHandler@45bf6f39 under GET@/v1/jobs/:jobid/vertices/:vertexid/watermarks.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.JobVertexWatermarksHandler@45bf6f39 under GET@/jobs/:jobid/vertices/:vertexid/watermarks.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobCancellationHandler@6c42f2a1 under GET@/v1/jobs/:jobid/yarn-cancel.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobCancellationHandler@6c42f2a1 under GET@/jobs/:jobid/yarn-cancel.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobCancellationHandler@17a703f5 under GET@/v1/jobs/:jobid/yarn-stop.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.JobCancellationHandler@17a703f5 under GET@/jobs/:jobid/yarn-stop.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.ClusterOverviewHandler@5ff2b8ca under GET@/v1/overview.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.cluster.ClusterOverviewHandler@5ff2b8ca under GET@/overview.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointDisposalHandlers$SavepointDisposalTriggerHandler@618ad2aa under POST@/v1/savepoint-disposal.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointDisposalHandlers$SavepointDisposalTriggerHandler@618ad2aa under POST@/savepoint-disposal.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointDisposalHandlers$SavepointDisposalStatusHandler@1aa6e3c0 under GET@/v1/savepoint-disposal/:triggerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.savepoints.SavepointDisposalHandlers$SavepointDisposalStatusHandler@1aa6e3c0 under GET@/savepoint-disposal/:triggerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagersHandler@3531f3ca under GET@/v1/taskmanagers.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagersHandler@3531f3ca under GET@/taskmanagers.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.AggregatingTaskManagersMetricsHandler@7fcf294e under GET@/v1/taskmanagers/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.AggregatingTaskManagersMetricsHandler@7fcf294e under GET@/taskmanagers/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerDetailsHandler@4867ab9f under GET@/v1/taskmanagers/:taskmanagerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerDetailsHandler@4867ab9f under GET@/taskmanagers/:taskmanagerid.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerLogFileHandler@65f2f9b0 under GET@/v1/taskmanagers/:taskmanagerid/log.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerLogFileHandler@65f2f9b0 under GET@/taskmanagers/:taskmanagerid/log.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerLogListHandler@5fe7f967 under GET@/v1/taskmanagers/:taskmanagerid/logs.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerLogListHandler@5fe7f967 under GET@/taskmanagers/:taskmanagerid/logs.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerCustomLogHandler@59e43e8c under GET@/v1/taskmanagers/:taskmanagerid/logs/:filename.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerCustomLogHandler@59e43e8c under GET@/taskmanagers/:taskmanagerid/logs/:filename.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.TaskManagerMetricsHandler@2caa5d7c under GET@/v1/taskmanagers/:taskmanagerid/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.job.metrics.TaskManagerMetricsHandler@2caa5d7c under GET@/taskmanagers/:taskmanagerid/metrics.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerStdoutFileHandler@5e671e20 under GET@/v1/taskmanagers/:taskmanagerid/stdout.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerStdoutFileHandler@5e671e20 under GET@/taskmanagers/:taskmanagerid/stdout.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerThreadDumpHandler@3eabe84a under GET@/v1/taskmanagers/:taskmanagerid/thread-dump.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.taskmanager.TaskManagerThreadDumpHandler@3eabe84a under GET@/taskmanagers/:taskmanagerid/thread-dump.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.legacy.files.StaticFileServerHandler@46c3a14d under GET@/v1/:*.
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Register handler org.apache.flink.runtime.rest.handler.legacy.files.StaticFileServerHandler@46c3a14d under GET@/:*.
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.channel.MultithreadEventLoopGroup]-Dio.netty.eventLoopThreads: 16
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.channel.nio.NioEventLoop]-Dio.netty.noKeySetOptimization: false
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.channel.nio.NioEventLoop]-Dio.netty.selectorAutoRebuildThreshold: 512
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.internal.PlatformDependent]org.jctools-core.MpscChunkedArrayQueue: available
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.channel.DefaultChannelId]-Dio.netty.processId: 1841 (auto-detected)
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.NetUtil]-Djava.net.preferIPv4Stack: false
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.NetUtil]-Djava.net.preferIPv6Addresses: false
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.NetUtil]Loopback interface: lo0 (lo0, 0:0:0:0:0:0:0:1%lo0)
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.NetUtil]Failed to get SOMAXCONN from sysctl and file /proc/sys/net/core/somaxconn. Default: 128
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.channel.DefaultChannelId]-Dio.netty.machineId: 3c:06:30:ff:fe:0a:2a:21 (auto-detected)
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.ResourceLeakDetector]-Dorg.apache.flink.shaded.netty4.io.netty.leakDetection.level: simple
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.ResourceLeakDetector]-Dorg.apache.flink.shaded.netty4.io.netty.leakDetection.targetRecords: 4
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.numHeapArenas: 16
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.numDirectArenas: 16
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.pageSize: 8192
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.maxOrder: 11
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.chunkSize: 16777216
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.tinyCacheSize: 512
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.smallCacheSize: 256
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.normalCacheSize: 64
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.maxCachedBufferCapacity: 32768
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.cacheTrimInterval: 8192
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.cacheTrimIntervalMillis: 0
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.useCacheForAllThreads: true
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.PooledByteBufAllocator]-Dio.netty.allocator.maxCachedByteBuffersPerChunk: 1023
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.ByteBufUtil]-Dio.netty.allocator.type: pooled
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.ByteBufUtil]-Dio.netty.threadLocalDirectBufferSize: 0
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.ByteBufUtil]-Dio.netty.maxThreadLocalCharBufferSize: 16384
+[DEBUG][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Binding rest endpoint to null:0.
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Rest endpoint listening at localhost:50964
+[INFO][22-07-03][org.apache.flink.runtime.highavailability.nonha.embedded.EmbeddedLeaderService]Proposing leadership to contender http://localhost:50964
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]Web frontend listening at http://localhost:50964.
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint]http://localhost:50964 was granted leadership with leaderSessionID=b391f918-8e30-478e-9f25-1e024b9e92b9
+[INFO][22-07-03][org.apache.flink.runtime.highavailability.nonha.embedded.EmbeddedLeaderService]Received confirmation of leadership for leader http://localhost:50964 , session=b391f918-8e30-478e-9f25-1e024b9e92b9
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.SupervisorActor]Starting FencedAkkaRpcActor with name resourcemanager_1.
+[INFO][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Starting RPC endpoint for org.apache.flink.runtime.resourcemanager.StandaloneResourceManager at akka://flink/user/rpc/resourcemanager_1 .
+[DEBUG][22-07-03][org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory]Starting Dispatcher.
+[INFO][22-07-03][org.apache.flink.runtime.highavailability.nonha.embedded.EmbeddedLeaderService]Proposing leadership to contender LeaderContender: DefaultDispatcherRunner
+[DEBUG][22-07-03][org.apache.flink.runtime.entrypoint.component.DefaultDispatcherResourceManagerComponentFactory]Starting ResourceManager.
+[INFO][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Starting the resource manager.
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.runner.DefaultDispatcherRunner]DefaultDispatcherRunner was granted leadership with leader id a1941162-73d7-4ffc-967d-345723f0b11d. Creating new DispatcherLeaderProcess.
+[INFO][22-07-03][org.apache.flink.runtime.highavailability.nonha.embedded.EmbeddedLeaderService]Proposing leadership to contender LeaderContender: StandaloneResourceManager
+[INFO][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]ResourceManager akka://flink/user/rpc/resourcemanager_1 was granted leadership with fencing token bf28a9f87dfa6bd818a8b3b10cea407c
+[INFO][22-07-03][org.apache.flink.runtime.minicluster.MiniCluster]Flink Mini Cluster started successfully
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager]Starting the slot manager.
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.runner.SessionDispatcherLeaderProcess]Start SessionDispatcherLeaderProcess.
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.runner.SessionDispatcherLeaderProcess]Recover all persisted job graphs.
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.runner.SessionDispatcherLeaderProcess]Successfully recovered 0 persisted job graphs.
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.SupervisorActor]Starting FencedAkkaRpcActor with name dispatcher_2.
+[INFO][22-07-03][org.apache.flink.runtime.highavailability.nonha.embedded.EmbeddedLeaderService]Received confirmation of leadership for leader akka://flink/user/rpc/resourcemanager_1 , session=18a8b3b1-0cea-407c-bf28-a9f87dfa6bd8
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/resourcemanager_1. Returning a org.apache.flink.runtime.resourcemanager.ResourceManagerGateway gateway.
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/resourcemanager_1. Returning a org.apache.flink.runtime.resourcemanager.ResourceManagerGateway gateway.
+[INFO][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Starting RPC endpoint for org.apache.flink.runtime.dispatcher.StandaloneDispatcher at akka://flink/user/rpc/dispatcher_2 .
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Connecting to ResourceManager akka://flink/user/rpc/resourcemanager_1(bf28a9f87dfa6bd818a8b3b10cea407c).
+[INFO][22-07-03][org.apache.flink.runtime.highavailability.nonha.embedded.EmbeddedLeaderService]Received confirmation of leadership for leader akka://flink/user/rpc/dispatcher_2 , session=a1941162-73d7-4ffc-967d-345723f0b11d
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/dispatcher_2. Returning a org.apache.flink.runtime.dispatcher.DispatcherGateway gateway.
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/dispatcher_2. Returning a org.apache.flink.runtime.dispatcher.DispatcherGateway gateway.
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/resourcemanager_1. Returning a org.apache.flink.runtime.resourcemanager.ResourceManagerGateway gateway.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Resolved ResourceManager address, beginning registration
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Registration at ResourceManager attempt 1 (timeout=100ms)
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/taskmanager_0. Returning a org.apache.flink.runtime.taskexecutor.TaskExecutorGateway gateway.
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.StandaloneDispatcher]Received JobGraph submission d4b436f56c9407aa89dd05b7d723b816 (metricStream).
+[INFO][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Registering TaskManager with ResourceID bbf70228-c10d-44c9-a76c-32a55c424b13 (akka://flink/user/rpc/taskmanager_0) at ResourceManager
+[INFO][22-07-03][org.apache.flink.runtime.dispatcher.StandaloneDispatcher]Submitting job d4b436f56c9407aa89dd05b7d723b816 (metricStream).
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Registration with ResourceManager at akka://flink/user/rpc/resourcemanager_1 was successful.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Successful registration at resource manager akka://flink/user/rpc/resourcemanager_1 under registration id b173f5e0f2ce555f173757c186af01cc.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager]Registering task executor bbf70228-c10d-44c9-a76c-32a55c424b13 under b173f5e0f2ce555f173757c186af01cc at the slot manager.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMasterServiceLeadershipRunner]Start leadership runner for job d4b436f56c9407aa89dd05b7d723b816.
+[INFO][22-07-03][org.apache.flink.runtime.highavailability.nonha.embedded.EmbeddedLeaderService]Proposing leadership to contender LeaderContender: JobMasterServiceLeadershipRunner
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMasterServiceLeadershipRunner]Create new JobMasterServiceProcess because we were granted leadership under c9902add-84be-428d-9304-91441e043174.
+[DEBUG][22-07-03][org.apache.flink.client.ClientUtils]Wait until job initialization is finished
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.SupervisorActor]Starting FencedAkkaRpcActor with name jobmanager_3.
+[INFO][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Starting RPC endpoint for org.apache.flink.runtime.jobmaster.JobMaster at akka://flink/user/rpc/jobmanager_3 .
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Initializing job metricStream (d4b436f56c9407aa89dd05b7d723b816).
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Using restart back off time strategy NoRestartBackoffTimeStrategy for metricStream (d4b436f56c9407aa89dd05b7d723b816).
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Running initialization on master for job metricStream (d4b436f56c9407aa89dd05b7d723b816).
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Successfully ran initialization on master in 4 ms.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Adding 3 vertices from job graph metricStream (d4b436f56c9407aa89dd05b7d723b816).
+[DEBUG][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Attaching 3 topologically sorted vertices to existing job graph with 0 vertices and 0 intermediate results.
+[DEBUG][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Connecting ExecutionJobVertex bc764cd8ddf7a0cff126f51c16239658 (Source: Custom Source) to 0 predecessors.
+[DEBUG][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Connecting ExecutionJobVertex feca28aff5a3958840bee985ee7de4d3 (Source: Custom Source) to 0 predecessors.
+[DEBUG][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Connecting ExecutionJobVertex 4bf7c1955ffe56e2106d666433eaf137 (Map -> Sink: Unnamed) to 2 predecessors.
+[DEBUG][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Connecting input 0 of vertex 4bf7c1955ffe56e2106d666433eaf137 (Map -> Sink: Unnamed) to intermediate result referenced via predecessor bc764cd8ddf7a0cff126f51c16239658 (Source: Custom Source).
+[DEBUG][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Connecting input 1 of vertex 4bf7c1955ffe56e2106d666433eaf137 (Map -> Sink: Unnamed) to intermediate result referenced via predecessor feca28aff5a3958840bee985ee7de4d3 (Source: Custom Source).
+[INFO][22-07-03][org.apache.flink.runtime.scheduler.adapter.DefaultExecutionTopology]Built 1 pipelined regions in 1 ms
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Successfully created execution graph from job graph metricStream (d4b436f56c9407aa89dd05b7d723b816).
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]No state backend has been configured, using default (HashMap) org.apache.flink.runtime.state.hashmap.HashMapStateBackend@2ddcc1d0
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]The configuration state.checkpoint-storage has not be set in the current sessions flink-conf.yaml. Falling back to a default CheckpointStorage type. Users are strongly encouraged explicitly set this configuration so they understand how their applications are checkpointing snapshots for fault-tolerance.
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Checkpoint storage is set to 'jobmanager'
+[DEBUG][22-07-03][org.apache.flink.runtime.checkpoint.CheckpointCoordinator]Status of the shared state registry of job d4b436f56c9407aa89dd05b7d723b816 after restore: SharedStateRegistry{registeredStates={}}.
+[INFO][22-07-03][org.apache.flink.runtime.checkpoint.CheckpointCoordinator]No checkpoint found during restore.
+[DEBUG][22-07-03][org.apache.flink.runtime.checkpoint.CheckpointCoordinator]Resetting the master hooks.
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Using failover strategy org.apache.flink.runtime.executiongraph.failover.flip1.RestartPipelinedRegionFailoverStrategy@65b9d680 for metricStream (d4b436f56c9407aa89dd05b7d723b816).
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.DefaultJobMasterServiceProcess]Successfully created the JobMasterService for job d4b436f56c9407aa89dd05b7d723b816 under leader id c9902add-84be-428d-9304-91441e043174.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMasterServiceLeadershipRunner]Confirm leadership c9902add-84be-428d-9304-91441e043174.
+[INFO][22-07-03][org.apache.flink.runtime.highavailability.nonha.embedded.EmbeddedLeaderService]Received confirmation of leadership for leader akka://flink/user/rpc/jobmanager_3 , session=c9902add-84be-428d-9304-91441e043174
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Starting execution of job metricStream (d4b436f56c9407aa89dd05b7d723b816) under job master id 930491441e043174c9902add84be428d.
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Starting scheduling with scheduling strategy [org.apache.flink.runtime.scheduler.strategy.PipelinedRegionSchedulingStrategy]
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Job metricStream (d4b436f56c9407aa89dd05b7d723b816) switched from state CREATED to RUNNING.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Source: Custom Source (1/1) (c1929b637649322a9628ce0d6931db7c) switched from CREATED to SCHEDULED.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Source: Custom Source (1/1) (19b2dad99a519110b7a3946481cb045c) switched from CREATED to SCHEDULED.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Map -> Sink: Unnamed (1/1) (20605f8f8677c63d5a94dc1c4e609622) switched from CREATED to SCHEDULED.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.PhysicalSlotProviderImpl]Received slot request [SlotRequestId{61350bed0d1975279964079c9a10aab4}] with resource requirements: ResourceProfile{UNKNOWN}
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.DeclarativeSlotPoolBridge]Request new allocated slot with slot request id SlotRequestId{61350bed0d1975279964079c9a10aab4} and resource profile ResourceProfile{UNKNOWN}
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.DefaultDeclarativeSlotPool]Declare new resource requirements for job d4b436f56c9407aa89dd05b7d723b816.
+	required resources: [ResourceRequirement{resourceProfile=ResourceProfile{UNKNOWN}, numberOfRequiredSlots=1}]
+	acquired resources: ResourceCounter{resources={}}
+[DEBUG][22-07-03][org.apache.flink.runtime.scheduler.SharedSlot]Request a logical slot (SlotRequestId{b4fdd34579d1b759acaba4b3f283b401}) for execution vertex (id bc764cd8ddf7a0cff126f51c16239658_0) from the physical slot (SlotRequestId{61350bed0d1975279964079c9a10aab4})
+[DEBUG][22-07-03][org.apache.flink.runtime.scheduler.SharedSlot]Request a logical slot (SlotRequestId{828e745bcee21eab88da14bd55946b54}) for execution vertex (id feca28aff5a3958840bee985ee7de4d3_0) from the physical slot (SlotRequestId{61350bed0d1975279964079c9a10aab4})
+[DEBUG][22-07-03][org.apache.flink.runtime.scheduler.SharedSlot]Request a logical slot (SlotRequestId{09b7d8275ded26b3967212fd39b6e1ed}) for execution vertex (id 4bf7c1955ffe56e2106d666433eaf137_0) from the physical slot (SlotRequestId{61350bed0d1975279964079c9a10aab4})
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Trigger heartbeat request.
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Connecting to ResourceManager akka://flink/user/rpc/resourcemanager_1(bf28a9f87dfa6bd818a8b3b10cea407c)
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/resourcemanager_1. Returning a org.apache.flink.runtime.resourcemanager.ResourceManagerGateway gateway.
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Resolved ResourceManager address, beginning registration
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Registration at ResourceManager attempt 1 (timeout=100ms)
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.DefaultJobLeaderIdService]Add job d4b436f56c9407aa89dd05b7d723b816 to job leader id monitoring.
+[INFO][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Registering job manager 930491441e043174c9902add84be428d@akka://flink/user/rpc/jobmanager_3 for job d4b436f56c9407aa89dd05b7d723b816.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.DefaultJobLeaderIdService]Job d4b436f56c9407aa89dd05b7d723b816 has a new job leader c9902add-84be-428d-9304-91441e043174@akka://flink/user/rpc/jobmanager_3.
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/jobmanager_3. Returning a org.apache.flink.runtime.jobmaster.JobMasterGateway gateway.
+[INFO][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Registered job manager 930491441e043174c9902add84be428d@akka://flink/user/rpc/jobmanager_3 for job d4b436f56c9407aa89dd05b7d723b816.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Registration with ResourceManager at akka://flink/user/rpc/resourcemanager_1 was successful.
+[INFO][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]JobManager successfully registered at ResourceManager, leader id: bf28a9f87dfa6bd818a8b3b10cea407c.
+[INFO][22-07-03][org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager]Received resource requirements from job d4b436f56c9407aa89dd05b7d723b816: [ResourceRequirement{resourceProfile=ResourceProfile{UNKNOWN}, numberOfRequiredSlots=1}]
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.slotmanager.DefaultResourceTracker]Initiating tracking of resources for job d4b436f56c9407aa89dd05b7d723b816.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager]Starting allocation of slot bbf70228-c10d-44c9-a76c-32a55c424b13_0 for job d4b436f56c9407aa89dd05b7d723b816 with resource profile ResourceProfile{UNKNOWN}.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Receive slot request 307f18d88861c97b7562bd4f016786cd for job d4b436f56c9407aa89dd05b7d723b816 from resource manager with leader id bf28a9f87dfa6bd818a8b3b10cea407c.
+[DEBUG][22-07-03][org.apache.flink.runtime.memory.MemoryManager]Initialized MemoryManager with total memory size 134217728 and page size 32768.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Allocated slot for 307f18d88861c97b7562bd4f016786cd.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService]Add job d4b436f56c9407aa89dd05b7d723b816 for job leader monitoring.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService]New leader information for job d4b436f56c9407aa89dd05b7d723b816. Address: akka://flink/user/rpc/jobmanager_3, leader id: 930491441e043174c9902add84be428d.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService]Try to register at job manager akka://flink/user/rpc/jobmanager_3 with leader id c9902add-84be-428d-9304-91441e043174.
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/jobmanager_3. Returning a org.apache.flink.runtime.jobmaster.JobMasterGateway gateway.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService]Resolved JobManager address, beginning registration
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService]Registration at JobManager attempt 1 (timeout=100ms)
+[DEBUG][22-07-03][org.apache.flink.runtime.rpc.akka.AkkaRpcService]Try to connect to remote RPC endpoint with address akka://flink/user/rpc/taskmanager_0. Returning a org.apache.flink.runtime.taskexecutor.TaskExecutorGateway gateway.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.DeclarativeSlotPoolBridge]Register new TaskExecutor bbf70228-c10d-44c9-a76c-32a55c424b13.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService]Registration with JobManager at akka://flink/user/rpc/jobmanager_3 was successful.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.DefaultJobLeaderService]Successful registration at job manager akka://flink/user/rpc/jobmanager_3 for job d4b436f56c9407aa89dd05b7d723b816.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Establish JobManager connection for job d4b436f56c9407aa89dd05b7d723b816.
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Offer reserved slots to the leader of job d4b436f56c9407aa89dd05b7d723b816.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.DefaultDeclarativeSlotPool]Received 1 slot offers from TaskExecutor bbf70228-c10d-44c9-a76c-32a55c424b13 @ localhost (dataPort=-1).
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.DefaultDeclarativeSlotPool]Matched slot offer 307f18d88861c97b7562bd4f016786cd to requirement ResourceProfile{UNKNOWN}.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.DefaultDeclarativeSlotPool]Acquired new resources; new total acquired resources: ResourceCounter{resources={ResourceProfile{UNKNOWN}=1}}
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.DeclarativeSlotPoolBridge]Matched slot AllocatedSlot 307f18d88861c97b7562bd4f016786cd @ bbf70228-c10d-44c9-a76c-32a55c424b13 @ localhost (dataPort=-1) - 0 to pending request PendingRequest{slotRequestId=SlotRequestId{61350bed0d1975279964079c9a10aab4}, resourceProfile=ResourceProfile{UNKNOWN}, isBatchRequest=false, unfulfillableSince=9223372036854775807}.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.DeclarativeSlotPoolBridge]Reserve slot 307f18d88861c97b7562bd4f016786cd for slot request id SlotRequestId{61350bed0d1975279964079c9a10aab4}
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.slotpool.DefaultAllocatedSlotPool]Reserve free slot with allocation id 307f18d88861c97b7562bd4f016786cd.
+[DEBUG][22-07-03][org.apache.flink.runtime.scheduler.SharedSlot]Allocated logical slot (SlotRequestId{b4fdd34579d1b759acaba4b3f283b401}) for execution vertex (id bc764cd8ddf7a0cff126f51c16239658_0) from the physical slot (SlotRequestId{61350bed0d1975279964079c9a10aab4})
+[DEBUG][22-07-03][org.apache.flink.runtime.scheduler.SharedSlot]Allocated logical slot (SlotRequestId{828e745bcee21eab88da14bd55946b54}) for execution vertex (id feca28aff5a3958840bee985ee7de4d3_0) from the physical slot (SlotRequestId{61350bed0d1975279964079c9a10aab4})
+[DEBUG][22-07-03][org.apache.flink.runtime.scheduler.SharedSlot]Allocated logical slot (SlotRequestId{09b7d8275ded26b3967212fd39b6e1ed}) for execution vertex (id 4bf7c1955ffe56e2106d666433eaf137_0) from the physical slot (SlotRequestId{61350bed0d1975279964079c9a10aab4})
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Source: Custom Source (1/1) (c1929b637649322a9628ce0d6931db7c) switched from SCHEDULED to DEPLOYING.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Deploying Source: Custom Source (1/1) (attempt #0) with attempt id c1929b637649322a9628ce0d6931db7c to bbf70228-c10d-44c9-a76c-32a55c424b13 @ localhost (dataPort=-1) with allocation id 307f18d88861c97b7562bd4f016786cd
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Source: Custom Source (1/1) (19b2dad99a519110b7a3946481cb045c) switched from SCHEDULED to DEPLOYING.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Deploying Source: Custom Source (1/1) (attempt #0) with attempt id 19b2dad99a519110b7a3946481cb045c to bbf70228-c10d-44c9-a76c-32a55c424b13 @ localhost (dataPort=-1) with allocation id 307f18d88861c97b7562bd4f016786cd
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Map -> Sink: Unnamed (1/1) (20605f8f8677c63d5a94dc1c4e609622) switched from SCHEDULED to DEPLOYING.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Deploying Map -> Sink: Unnamed (1/1) (attempt #0) with attempt id 20605f8f8677c63d5a94dc1c4e609622 to bbf70228-c10d-44c9-a76c-32a55c424b13 @ localhost (dataPort=-1) with allocation id 307f18d88861c97b7562bd4f016786cd
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.slot.TaskSlotTableImpl]Activate slot 307f18d88861c97b7562bd4f016786cd.
+[DEBUG][22-07-03][org.apache.flink.runtime.state.TaskExecutorLocalStateStoresManager]Registered new allocation id 307f18d88861c97b7562bd4f016786cd for local state stores for job d4b436f56c9407aa89dd05b7d723b816.
+[DEBUG][22-07-03][org.apache.flink.runtime.state.TaskExecutorLocalStateStoresManager]Registered new local state store with configuration LocalRecoveryConfig{localRecoveryMode=false, localStateDirectories=LocalRecoveryDirectoryProvider{rootDirectories=[/var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/localState/aid_307f18d88861c97b7562bd4f016786cd], jobID=d4b436f56c9407aa89dd05b7d723b816, jobVertexID=bc764cd8ddf7a0cff126f51c16239658, subtaskIndex=0}} for d4b436f56c9407aa89dd05b7d723b816 - bc764cd8ddf7a0cff126f51c16239658 - 0 under allocation id 307f18d88861c97b7562bd4f016786cd.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResultPartitionFactory]Source: Custom Source (1/1)#0 (c1929b637649322a9628ce0d6931db7c): Initialized org.apache.flink.runtime.io.network.partition.ResultPartitionFactory@141886ae
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received task Source: Custom Source (1/1)#0 (c1929b637649322a9628ce0d6931db7c), deploy into slot with allocation id 307f18d88861c97b7562bd4f016786cd.
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Source: Custom Source (1/1)#0 (c1929b637649322a9628ce0d6931db7c) switched from CREATED to DEPLOYING.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskmanager.Task]Creating FileSystem stream leak safety net for task Source: Custom Source (1/1)#0 (c1929b637649322a9628ce0d6931db7c) [DEPLOYING]
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Loading JAR files for task Source: Custom Source (1/1)#0 (c1929b637649322a9628ce0d6931db7c) [DEPLOYING].
+[DEBUG][22-07-03][org.apache.flink.runtime.taskmanager.Task]Getting user code class loader for task c1929b637649322a9628ce0d6931db7c at library cache manager took 2 milliseconds
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.slot.TaskSlotTableImpl]Activate slot 307f18d88861c97b7562bd4f016786cd.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskmanager.Task]Registering task at network: Source: Custom Source (1/1)#0 (c1929b637649322a9628ce0d6931db7c) [DEPLOYING].
+[DEBUG][22-07-03][org.apache.flink.runtime.state.TaskExecutorLocalStateStoresManager]Registered new local state store with configuration LocalRecoveryConfig{localRecoveryMode=false, localStateDirectories=LocalRecoveryDirectoryProvider{rootDirectories=[/var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/localState/aid_307f18d88861c97b7562bd4f016786cd], jobID=d4b436f56c9407aa89dd05b7d723b816, jobVertexID=feca28aff5a3958840bee985ee7de4d3, subtaskIndex=0}} for d4b436f56c9407aa89dd05b7d723b816 - feca28aff5a3958840bee985ee7de4d3 - 0 under allocation id 307f18d88861c97b7562bd4f016786cd.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResultPartitionFactory]Source: Custom Source (1/1)#0 (19b2dad99a519110b7a3946481cb045c): Initialized org.apache.flink.runtime.io.network.partition.ResultPartitionFactory@141886ae
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received task Source: Custom Source (1/1)#0 (19b2dad99a519110b7a3946481cb045c), deploy into slot with allocation id 307f18d88861c97b7562bd4f016786cd.
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Source: Custom Source (1/1)#0 (19b2dad99a519110b7a3946481cb045c) switched from CREATED to DEPLOYING.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.buffer.LocalBufferPool]Using a local buffer pool with 2-10 buffers
+[DEBUG][22-07-03][org.apache.flink.runtime.taskmanager.Task]Creating FileSystem stream leak safety net for task Source: Custom Source (1/1)#0 (19b2dad99a519110b7a3946481cb045c) [DEPLOYING]
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.slot.TaskSlotTableImpl]Activate slot 307f18d88861c97b7562bd4f016786cd.
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Loading JAR files for task Source: Custom Source (1/1)#0 (19b2dad99a519110b7a3946481cb045c) [DEPLOYING].
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResultPartitionManager]Registered PipelinedResultPartition c85acc314d9c64e420a08e5c9ec8762e#0@c1929b637649322a9628ce0d6931db7c [PIPELINED_BOUNDED, 1 subpartitions, 2 pending consumptions].
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.TaskEventDispatcher]registering c85acc314d9c64e420a08e5c9ec8762e#0@c1929b637649322a9628ce0d6931db7c
+[DEBUG][22-07-03][org.apache.flink.runtime.taskmanager.Task]Getting user code class loader for task 19b2dad99a519110b7a3946481cb045c at library cache manager took 4 milliseconds
+[DEBUG][22-07-03][org.apache.flink.runtime.state.TaskExecutorLocalStateStoresManager]Registered new local state store with configuration LocalRecoveryConfig{localRecoveryMode=false, localStateDirectories=LocalRecoveryDirectoryProvider{rootDirectories=[/var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/localState/aid_307f18d88861c97b7562bd4f016786cd], jobID=d4b436f56c9407aa89dd05b7d723b816, jobVertexID=4bf7c1955ffe56e2106d666433eaf137, subtaskIndex=0}} for d4b436f56c9407aa89dd05b7d723b816 - 4bf7c1955ffe56e2106d666433eaf137 - 0 under allocation id 307f18d88861c97b7562bd4f016786cd.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskmanager.Task]Registering task at network: Source: Custom Source (1/1)#0 (19b2dad99a519110b7a3946481cb045c) [DEPLOYING].
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.buffer.LocalBufferPool]Using a local buffer pool with 2-10 buffers
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResultPartitionManager]Registered PipelinedResultPartition 569ca0e3e0e8bc30cee1d363a34bafd7#0@19b2dad99a519110b7a3946481cb045c [PIPELINED_BOUNDED, 1 subpartitions, 2 pending consumptions].
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.TaskEventDispatcher]registering 569ca0e3e0e8bc30cee1d363a34bafd7#0@19b2dad99a519110b7a3946481cb045c
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.SingleInputGateFactory]Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622): Created 1 input channels (local: 1, remote: 0, unknown: 0).
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.SingleInputGateFactory]Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622): Created 1 input channels (local: 1, remote: 0, unknown: 0).
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Using partitioner FORWARD for output 0 of task Source: Custom Source
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Using partitioner FORWARD for output 0 of task Source: Custom Source
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received task Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622), deploy into slot with allocation id 307f18d88861c97b7562bd4f016786cd.
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622) switched from CREATED to DEPLOYING.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskmanager.Task]Creating FileSystem stream leak safety net for task Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622) [DEPLOYING]
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Loading JAR files for task Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622) [DEPLOYING].
+[DEBUG][22-07-03][org.apache.flink.runtime.taskmanager.Task]Getting user code class loader for task 20605f8f8677c63d5a94dc1c4e609622 at library cache manager took 0 milliseconds
+[DEBUG][22-07-03][org.apache.flink.runtime.taskmanager.Task]Registering task at network: Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622) [DEPLOYING].
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.buffer.LocalBufferPool]Using a local buffer pool with 1-8 buffers
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.buffer.LocalBufferPool]Using a local buffer pool with 1-8 buffers
+[INFO][22-07-03][org.apache.flink.runtime.taskexecutor.slot.TaskSlotTableImpl]Activate slot 307f18d88861c97b7562bd4f016786cd.
+[INFO][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]No state backend has been configured, using default (HashMap) org.apache.flink.runtime.state.hashmap.HashMapStateBackend@64890b72
+[INFO][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]No state backend has been configured, using default (HashMap) org.apache.flink.runtime.state.hashmap.HashMapStateBackend@677acbb6
+[INFO][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]No state backend has been configured, using default (HashMap) org.apache.flink.runtime.state.hashmap.HashMapStateBackend@7ef5223
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]The configuration state.checkpoint-storage has not be set in the current sessions flink-conf.yaml. Falling back to a default CheckpointStorage type. Users are strongly encouraged explicitly set this configuration so they understand how their applications are checkpointing snapshots for fault-tolerance.
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]The configuration state.checkpoint-storage has not be set in the current sessions flink-conf.yaml. Falling back to a default CheckpointStorage type. Users are strongly encouraged explicitly set this configuration so they understand how their applications are checkpointing snapshots for fault-tolerance.
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]The configuration state.checkpoint-storage has not be set in the current sessions flink-conf.yaml. Falling back to a default CheckpointStorage type. Users are strongly encouraged explicitly set this configuration so they understand how their applications are checkpointing snapshots for fault-tolerance.
+[INFO][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Checkpoint storage is set to 'jobmanager'
+[INFO][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Checkpoint storage is set to 'jobmanager'
+[INFO][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Checkpoint storage is set to 'jobmanager'
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622) switched from DEPLOYING to INITIALIZING.
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Source: Custom Source (1/1)#0 (19b2dad99a519110b7a3946481cb045c) switched from DEPLOYING to INITIALIZING.
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Source: Custom Source (1/1)#0 (c1929b637649322a9628ce0d6931db7c) switched from DEPLOYING to INITIALIZING.
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Initializing Map -> Sink: Unnamed (1/1)#0.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Source: Custom Source (1/1) (c1929b637649322a9628ce0d6931db7c) switched from DEPLOYING to INITIALIZING.
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Initializing Source: Custom Source (1/1)#0.
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Initializing Source: Custom Source (1/1)#0.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Map -> Sink: Unnamed (1/1) (20605f8f8677c63d5a94dc1c4e609622) switched from DEPLOYING to INITIALIZING.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Source: Custom Source (1/1) (19b2dad99a519110b7a3946481cb045c) switched from DEPLOYING to INITIALIZING.
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Invoking Source: Custom Source (1/1)#0
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Invoking Source: Custom Source (1/1)#0
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.AbstractByteBuf]-Dorg.apache.flink.shaded.netty4.io.netty.buffer.checkAccessible: true
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.buffer.AbstractByteBuf]-Dorg.apache.flink.shaded.netty4.io.netty.buffer.checkBounds: true
+[DEBUG][22-07-03][org.apache.flink.shaded.netty4.io.netty.util.ResourceLeakDetectorFactory]Loaded default ResourceLeakDetector: org.apache.flink.shaded.netty4.io.netty.util.ResourceLeakDetector@383a6c41
+[DEBUG][22-07-03][org.apache.flink.streaming.api.operators.BackendRestorerProcedure]Creating operator state backend for StreamSource_feca28aff5a3958840bee985ee7de4d3_(1/1) with empty state.
+[DEBUG][22-07-03][org.apache.flink.streaming.api.operators.BackendRestorerProcedure]Creating operator state backend for StreamSource_bc764cd8ddf7a0cff126f51c16239658_(1/1) with empty state.
+[DEBUG][22-07-03][org.apache.flink.streaming.runtime.tasks.StreamTask]Invoking Map -> Sink: Unnamed (1/1)#0
+[DEBUG][22-07-03][org.apache.flink.streaming.api.operators.BackendRestorerProcedure]Creating operator state backend for StreamSink_ccb29b5204e83e8a588b3828afaa7015_(1/1) with empty state.
+[INFO][22-07-03][org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase]Consumer subtask 0 has no restore state.
+[INFO][22-07-03][org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase]Consumer subtask 0 has no restore state.
+[INFO][22-07-03][org.apache.kafka.clients.consumer.ConsumerConfig]ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = earliest
+	bootstrap.servers = [worker1:9092, worker2:9092, worker3:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = metric_consumer_g
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+[INFO][22-07-03][org.apache.kafka.clients.consumer.ConsumerConfig]ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = earliest
+	bootstrap.servers = [worker1:9092, worker2:9092, worker3:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = metric_consumer_g
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.KafkaConsumer][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Initializing the Kafka consumer
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.KafkaConsumer][Consumer clientId=consumer-metric_consumer_g-2, groupId=metric_consumer_g] Initializing the Kafka consumer
+[WARN][22-07-03][org.apache.kafka.clients.consumer.ConsumerConfig]The configuration 'zookeeper.connect' was supplied but isn't a known config.
+[WARN][22-07-03][org.apache.kafka.clients.consumer.ConsumerConfig]The configuration 'zookeeper.connect' was supplied but isn't a known config.
+[INFO][22-07-03][org.apache.kafka.common.utils.AppInfoParser]Kafka version: 2.4.1
+[INFO][22-07-03][org.apache.kafka.common.utils.AppInfoParser]Kafka commitId: c57222ae8cd7866b
+[INFO][22-07-03][org.apache.kafka.common.utils.AppInfoParser]Kafka startTimeMs: 1656818129628
+[DEBUG][22-07-03][org.apache.hadoop.util.Shell]setsid is not available on this machine. So not using it.
+[DEBUG][22-07-03][org.apache.hadoop.util.Shell]setsid exited with exit code 0
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.KafkaConsumer][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Kafka consumer initialized
+[INFO][22-07-03][org.apache.kafka.common.utils.AppInfoParser]Kafka version: 2.4.1
+[INFO][22-07-03][org.apache.kafka.common.utils.AppInfoParser]Kafka commitId: c57222ae8cd7866b
+[INFO][22-07-03][org.apache.kafka.common.utils.AppInfoParser]Kafka startTimeMs: 1656818129628
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.KafkaConsumer][Consumer clientId=consumer-metric_consumer_g-2, groupId=metric_consumer_g] Kafka consumer initialized
+[DEBUG][22-07-03][org.apache.hadoop.security.Groups] Creating new Groups object
+[DEBUG][22-07-03][org.apache.hadoop.util.NativeCodeLoader]Trying to load the custom-built native-hadoop library...
+[DEBUG][22-07-03][org.apache.hadoop.util.NativeCodeLoader]Failed to load native-hadoop with error: java.lang.UnsatisfiedLinkError: no hadoop in java.library.path
+[DEBUG][22-07-03][org.apache.hadoop.util.NativeCodeLoader]java.library.path=/Users/fabivs/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+[WARN][22-07-03][org.apache.hadoop.util.NativeCodeLoader]Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[DEBUG][22-07-03][org.apache.hadoop.util.PerformanceAdvisory]Falling back to shell based
+[DEBUG][22-07-03][org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback]Group mapping impl=org.apache.hadoop.security.ShellBasedUnixGroupsMapping
+[DEBUG][22-07-03][org.apache.hadoop.security.Groups]Group mapping impl=org.apache.hadoop.security.JniBasedUnixGroupsMappingWithFallback; cacheTimeout=300000; warningDeltaMs=5000
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-2, groupId=metric_consumer_g] Initiating connection to node worker2:9092 (id: -2 rack: null) using address worker2/47.104.108.98
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Initiating connection to node worker1:9092 (id: -1 rack: null) using address worker1/47.104.89.120
+[DEBUG][22-07-03][org.apache.kafka.common.network.Selector][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Created socket with SO_RCVBUF = 65800, SO_SNDBUF = 131600, SO_TIMEOUT = 0 to node -1
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Completed connection to node -1. Fetching API versions.
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Initiating API versions fetch from node -1.
+[DEBUG][22-07-03][org.apache.hadoop.metrics2.lib.MutableMetricsFactory]field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginSuccess with annotation @org.apache.hadoop.metrics2.annotation.Metric(sampleName=Ops, always=false, valueName=Time, about=, interval=10, type=DEFAULT, value=[Rate of successful kerberos logins and latency (milliseconds)])
+[DEBUG][22-07-03][org.apache.hadoop.metrics2.lib.MutableMetricsFactory]field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.loginFailure with annotation @org.apache.hadoop.metrics2.annotation.Metric(sampleName=Ops, always=false, valueName=Time, about=, interval=10, type=DEFAULT, value=[Rate of failed kerberos logins and latency (milliseconds)])
+[DEBUG][22-07-03][org.apache.hadoop.metrics2.lib.MutableMetricsFactory]field org.apache.hadoop.metrics2.lib.MutableRate org.apache.hadoop.security.UserGroupInformation$UgiMetrics.getGroups with annotation @org.apache.hadoop.metrics2.annotation.Metric(sampleName=Ops, always=false, valueName=Time, about=, interval=10, type=DEFAULT, value=[GetGroups])
+[DEBUG][22-07-03][org.apache.hadoop.metrics2.lib.MutableMetricsFactory]field private org.apache.hadoop.metrics2.lib.MutableGaugeLong org.apache.hadoop.security.UserGroupInformation$UgiMetrics.renewalFailuresTotal with annotation @org.apache.hadoop.metrics2.annotation.Metric(sampleName=Ops, always=false, valueName=Time, about=, interval=10, type=DEFAULT, value=[Renewal failures since startup])
+[DEBUG][22-07-03][org.apache.hadoop.metrics2.lib.MutableMetricsFactory]field private org.apache.hadoop.metrics2.lib.MutableGaugeInt org.apache.hadoop.security.UserGroupInformation$UgiMetrics.renewalFailures with annotation @org.apache.hadoop.metrics2.annotation.Metric(sampleName=Ops, always=false, valueName=Time, about=, interval=10, type=DEFAULT, value=[Renewal failures since last successful login])
+[DEBUG][22-07-03][org.apache.hadoop.metrics2.impl.MetricsSystemImpl]UgiMetrics, User and group related metrics
+[DEBUG][22-07-03][org.apache.hadoop.security.SecurityUtil]Setting hadoop.security.token.service.use_ip to true
+[DEBUG][22-07-03][org.apache.hadoop.security.UserGroupInformation]hadoop login
+[DEBUG][22-07-03][org.apache.hadoop.security.UserGroupInformation]hadoop login commit
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Recorded API versions for node -1: (Produce(0): 0 to 8 [usable: 8], Fetch(1): 0 to 11 [usable: 11], ListOffsets(2): 0 to 5 [usable: 5], Metadata(3): 0 to 9 [usable: 9], LeaderAndIsr(4): 0 to 4 [usable: 4], StopReplica(5): 0 to 2 [usable: 2], UpdateMetadata(6): 0 to 6 [usable: 6], ControlledShutdown(7): 0 to 3 [usable: 3], OffsetCommit(8): 0 to 8 [usable: 8], OffsetFetch(9): 0 to 6 [usable: 6], FindCoordinator(10): 0 to 3 [usable: 3], JoinGroup(11): 0 to 6 [usable: 6], Heartbeat(12): 0 to 4 [usable: 4], LeaveGroup(13): 0 to 4 [usable: 4], SyncGroup(14): 0 to 4 [usable: 4], DescribeGroups(15): 0 to 5 [usable: 5], ListGroups(16): 0 to 3 [usable: 3], SaslHandshake(17): 0 to 1 [usable: 1], ApiVersions(18): 0 to 3 [usable: 3], CreateTopics(19): 0 to 5 [usable: 5], DeleteTopics(20): 0 to 4 [usable: 4], DeleteRecords(21): 0 to 1 [usable: 1], InitProducerId(22): 0 to 2 [usable: 2], OffsetForLeaderEpoch(23): 0 to 3 [usable: 3], AddPartitionsToTxn(24): 0 to 1 [usable: 1], AddOffsetsToTxn(25): 0 to 1 [usable: 1], EndTxn(26): 0 to 1 [usable: 1], WriteTxnMarkers(27): 0 [usable: 0], TxnOffsetCommit(28): 0 to 2 [usable: 2], DescribeAcls(29): 0 to 1 [usable: 1], CreateAcls(30): 0 to 1 [usable: 1], DeleteAcls(31): 0 to 1 [usable: 1], DescribeConfigs(32): 0 to 2 [usable: 2], AlterConfigs(33): 0 to 1 [usable: 1], AlterReplicaLogDirs(34): 0 to 1 [usable: 1], DescribeLogDirs(35): 0 to 1 [usable: 1], SaslAuthenticate(36): 0 to 1 [usable: 1], CreatePartitions(37): 0 to 1 [usable: 1], CreateDelegationToken(38): 0 to 2 [usable: 2], RenewDelegationToken(39): 0 to 1 [usable: 1], ExpireDelegationToken(40): 0 to 1 [usable: 1], DescribeDelegationToken(41): 0 to 1 [usable: 1], DeleteGroups(42): 0 to 2 [usable: 2], ElectLeaders(43): 0 to 2 [usable: 2], IncrementalAlterConfigs(44): 0 to 1 [usable: 1], AlterPartitionReassignments(45): 0 [usable: 0], ListPartitionReassignments(46): 0 [usable: 0], OffsetDelete(47): 0 [usable: 0])
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Sending metadata request MetadataRequestData(topics=[], allowAutoTopicCreation=true, includeClusterAuthorizedOperations=false, includeTopicAuthorizedOperations=false) to node worker1:9092 (id: -1 rack: null)
+[DEBUG][22-07-03][org.apache.hadoop.security.UserGroupInformation]using local user:UnixPrincipal: fabivs
+[DEBUG][22-07-03][org.apache.hadoop.security.UserGroupInformation]Using user: "UnixPrincipal: fabivs" with name fabivs
+[DEBUG][22-07-03][org.apache.hadoop.security.UserGroupInformation]User entry: "fabivs"
+[DEBUG][22-07-03][org.apache.hadoop.security.UserGroupInformation]UGI loginUser:fabivs (auth:SIMPLE)
+[DEBUG][22-07-03][org.apache.hadoop.security.UserGroupInformation]PrivilegedAction as:fabivs (auth:SIMPLE) from:org.apache.hadoop.hbase.security.User$SecureHadoopUser.runAs(User.java:347)
+[INFO][22-07-03][org.apache.kafka.clients.Metadata][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Cluster ID: w6wKIiBSR8Sv1AUq2edUOA
+[DEBUG][22-07-03][org.apache.kafka.clients.Metadata][Consumer clientId=consumer-metric_consumer_g-1, groupId=metric_consumer_g] Updated cluster metadata updateVersion 2 to MetadataCache{clusterId='w6wKIiBSR8Sv1AUq2edUOA', nodes=[worker1.cluster:9092 (id: 1 rack: null), worker2cluster:9092 (id: 2 rack: null), worker3.cluster:9092 (id: 3 rack: null)], partitions=[], controller=worker2cluster:9092 (id: 2 rack: null)}
+[INFO][22-07-03][org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase]Consumer subtask 0 will start reading the following 1 partitions from the committed group offsets in Kafka: [KafkaTopicPartition{topic='mem.used', partition=0}]
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Source: Custom Source (1/1)#0 (c1929b637649322a9628ce0d6931db7c) switched from INITIALIZING to RUNNING.
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Source: Custom Source (1/1) (c1929b637649322a9628ce0d6931db7c) switched from INITIALIZING to RUNNING.
+[INFO][22-07-03][org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumerBase]Consumer subtask 0 creating fetcher with offsets {KafkaTopicPartition{topic='mem.used', partition=0}=-915623761773}.
+[INFO][22-07-03][org.apache.kafka.clients.consumer.ConsumerConfig]ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = earliest
+	bootstrap.servers = [worker1:9092, worker2:9092, worker3:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = metric_consumer_g
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.KafkaConsumer][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Initializing the Kafka consumer
+[WARN][22-07-03][org.apache.kafka.clients.consumer.ConsumerConfig]The configuration 'zookeeper.connect' was supplied but isn't a known config.
+[INFO][22-07-03][org.apache.kafka.common.utils.AppInfoParser]Kafka version: 2.4.1
+[INFO][22-07-03][org.apache.kafka.common.utils.AppInfoParser]Kafka commitId: c57222ae8cd7866b
+[INFO][22-07-03][org.apache.kafka.common.utils.AppInfoParser]Kafka startTimeMs: 1656818130295
+[DEBUG][22-07-03][org.apache.hadoop.hbase.zookeeper.ReadOnlyZKClient]Connect 0x4085b4ac to master1:2181,master2:2181,utility1:2181 with session timeout=90000ms, retries 30, retry interval 1000ms, keepAlive=60000ms
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.KafkaConsumer][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Kafka consumer initialized
+[INFO][22-07-03][org.apache.kafka.clients.consumer.KafkaConsumer][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Subscribed to partition(s): mem.used-0
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:zookeeper.version=3.5.7-f0fdd52973d373ffd9c86b81d99842dc2c7f660e, built on 02/10/2020 11:30 GMT
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:host.name=localhost
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:java.version=1.8.0_291
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:java.vendor=Oracle Corporation
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:java.home=/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:java.class.path=/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/jaccess.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/lib/ant-javafx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/lib/dt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/lib/javafx-mx.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/lib/jconsole.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/lib/packager.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/lib/sa-jdi.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/lib/tools.jar:/Users/fabivs/myfile/code/bdp-flink/metricflow-flink/target/classes:/Users/fabivs/.m2/repository/org/apache/flink/flink-runtime_2.11/1.13.6/flink-runtime_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-core/1.13.6/flink-core-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-annotations/1.13.6/flink-annotations-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-metrics-core/1.13.6/flink-metrics-core-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-shaded-asm-7/7.1-13.0/flink-shaded-asm-7-7.1-13.0.jar:/Users/fabivs/.m2/repository/com/esotericsoftware/kryo/kryo/2.24.0/kryo-2.24.0.jar:/Users/fabivs/.m2/repository/com/esotericsoftware/minlog/minlog/1.2/minlog-1.2.jar:/Users/fabivs/.m2/repository/org/objenesis/objenesis/2.1/objenesis-2.1.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-queryable-state-client-java/1.13.6/flink-queryable-state-client-java-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-hadoop-fs/1.13.6/flink-hadoop-fs-1.13.6.jar:/Users/fabivs/.m2/repository/commons-io/commons-io/2.8.0/commons-io-2.8.0.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-shaded-netty/4.1.49.Final-13.0/flink-shaded-netty-4.1.49.Final-13.0.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-shaded-guava/18.0-13.0/flink-shaded-guava-18.0-13.0.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-shaded-jackson/2.12.1-13.0/flink-shaded-jackson-2.12.1-13.0.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-shaded-zookeeper-3/3.4.14-13.0/flink-shaded-zookeeper-3-3.4.14-13.0.jar:/Users/fabivs/.m2/repository/org/apache/commons/commons-lang3/3.3.2/commons-lang3-3.3.2.jar:/Users/fabivs/.m2/repository/commons-cli/commons-cli/1.3.1/commons-cli-1.3.1.jar:/Users/fabivs/.m2/repository/org/javassist/javassist/3.24.0-GA/javassist-3.24.0-GA.jar:/Users/fabivs/.m2/repository/org/scala-lang/scala-library/2.11.12/scala-library-2.11.12.jar:/Users/fabivs/.m2/repository/com/typesafe/akka/akka-actor_2.11/2.5.21/akka-actor_2.11-2.5.21.jar:/Users/fabivs/.m2/repository/com/typesafe/config/1.3.3/config-1.3.3.jar:/Users/fabivs/.m2/repository/com/typesafe/akka/akka-stream_2.11/2.5.21/akka-stream_2.11-2.5.21.jar:/Users/fabivs/.m2/repository/org/reactivestreams/reactive-streams/1.0.2/reactive-streams-1.0.2.jar:/Users/fabivs/.m2/repository/com/typesafe/ssl-config-core_2.11/0.3.7/ssl-config-core_2.11-0.3.7.jar:/Users/fabivs/.m2/repository/org/scala-lang/modules/scala-parser-combinators_2.11/1.1.1/scala-parser-combinators_2.11-1.1.1.jar:/Users/fabivs/.m2/repository/com/typesafe/akka/akka-protobuf_2.11/2.5.21/akka-protobuf_2.11-2.5.21.jar:/Users/fabivs/.m2/repository/com/typesafe/akka/akka-slf4j_2.11/2.5.21/akka-slf4j_2.11-2.5.21.jar:/Users/fabivs/.m2/repository/org/clapper/grizzled-slf4j_2.11/1.3.2/grizzled-slf4j_2.11-1.3.2.jar:/Users/fabivs/.m2/repository/com/github/scopt/scopt_2.11/3.5.0/scopt_2.11-3.5.0.jar:/Users/fabivs/.m2/repository/org/xerial/snappy/snappy-java/1.1.8.3/snappy-java-1.1.8.3.jar:/Users/fabivs/.m2/repository/com/twitter/chill_2.11/0.7.6/chill_2.11-0.7.6.jar:/Users/fabivs/.m2/repository/com/twitter/chill-java/0.7.6/chill-java-0.7.6.jar:/Users/fabivs/.m2/repository/org/lz4/lz4-java/1.6.0/lz4-java-1.6.0.jar:/Users/fabivs/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar:/Users/fabivs/.m2/repository/org/apache/flink/force-shading/1.13.6/force-shading-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-streaming-java_2.11/1.13.6/flink-streaming-java_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-file-sink-common/1.13.6/flink-file-sink-common-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/commons/commons-math3/3.5/commons-math3-3.5.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-java/1.13.6/flink-java-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-connector-base/1.13.6/flink-connector-base-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/kafka/kafka_2.11/2.4.1/kafka_2.11-2.4.1.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.10.0/jackson-databind-2.10.0.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.10.0/jackson-annotations-2.10.0.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.10.0/jackson-core-2.10.0.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/module/jackson-module-scala_2.11/2.10.0/jackson-module-scala_2.11-2.10.0.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/module/jackson-module-paranamer/2.10.0/jackson-module-paranamer-2.10.0.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-csv/2.10.0/jackson-dataformat-csv-2.10.0.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-jdk8/2.10.0/jackson-datatype-jdk8-2.10.0.jar:/Users/fabivs/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar:/Users/fabivs/.m2/repository/com/yammer/metrics/metrics-core/2.2.0/metrics-core-2.2.0.jar:/Users/fabivs/.m2/repository/org/scala-lang/modules/scala-collection-compat_2.11/2.1.2/scala-collection-compat_2.11-2.1.2.jar:/Users/fabivs/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.11/0.9.0/scala-java8-compat_2.11-0.9.0.jar:/Users/fabivs/.m2/repository/org/scala-lang/scala-reflect/2.11.12/scala-reflect-2.11.12.jar:/Users/fabivs/.m2/repository/com/typesafe/scala-logging/scala-logging_2.11/3.9.2/scala-logging_2.11-3.9.2.jar:/Users/fabivs/.m2/repository/org/apache/zookeeper/zookeeper/3.5.7/zookeeper-3.5.7.jar:/Users/fabivs/.m2/repository/org/apache/zookeeper/zookeeper-jute/3.5.7/zookeeper-jute-3.5.7.jar:/Users/fabivs/.m2/repository/io/netty/netty-handler/4.1.45.Final/netty-handler-4.1.45.Final.jar:/Users/fabivs/.m2/repository/io/netty/netty-common/4.1.45.Final/netty-common-4.1.45.Final.jar:/Users/fabivs/.m2/repository/io/netty/netty-buffer/4.1.45.Final/netty-buffer-4.1.45.Final.jar:/Users/fabivs/.m2/repository/io/netty/netty-transport/4.1.45.Final/netty-transport-4.1.45.Final.jar:/Users/fabivs/.m2/repository/io/netty/netty-resolver/4.1.45.Final/netty-resolver-4.1.45.Final.jar:/Users/fabivs/.m2/repository/io/netty/netty-codec/4.1.45.Final/netty-codec-4.1.45.Final.jar:/Users/fabivs/.m2/repository/io/netty/netty-transport-native-epoll/4.1.45.Final/netty-transport-native-epoll-4.1.45.Final.jar:/Users/fabivs/.m2/repository/io/netty/netty-transport-native-unix-common/4.1.45.Final/netty-transport-native-unix-common-4.1.45.Final.jar:/Users/fabivs/.m2/repository/org/apache/kafka/kafka-streams/2.4.1/kafka-streams-2.4.1.jar:/Users/fabivs/.m2/repository/org/apache/kafka/connect-json/2.4.1/connect-json-2.4.1.jar:/Users/fabivs/.m2/repository/org/apache/kafka/connect-api/2.4.1/connect-api-2.4.1.jar:/Users/fabivs/.m2/repository/org/rocksdb/rocksdbjni/5.18.3/rocksdbjni-5.18.3.jar:/Users/fabivs/.m2/repository/org/apache/kafka/kafka-clients/2.4.1/kafka-clients-2.4.1.jar:/Users/fabivs/.m2/repository/com/github/luben/zstd-jni/1.4.3-1/zstd-jni-1.4.3-1.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-clients_2.11/1.13.6/flink-clients_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-optimizer_2.11/1.13.6/flink-optimizer_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-runtime-web_2.11/1.13.6/flink-runtime-web_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-connector-kafka_2.11/1.13.6/flink-connector-kafka_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/com/ververica/flink-connector-mysql-cdc/2.0.1/flink-connector-mysql-cdc-2.0.1.jar:/Users/fabivs/.m2/repository/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-table-planner-blink_2.11/1.13.6/flink-table-planner-blink_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-table-common/1.13.6/flink-table-common-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-connector-files/1.13.6/flink-connector-files-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-table-api-java/1.13.6/flink-table-api-java-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-table-api-scala_2.11/1.13.6/flink-table-api-scala_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/scala-lang/scala-compiler/2.11.12/scala-compiler-2.11.12.jar:/Users/fabivs/.m2/repository/org/scala-lang/modules/scala-xml_2.11/1.0.5/scala-xml_2.11-1.0.5.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-table-api-java-bridge_2.11/1.13.6/flink-table-api-java-bridge_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-table-api-scala-bridge_2.11/1.13.6/flink-table-api-scala-bridge_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-scala_2.11/1.13.6/flink-scala_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-streaming-scala_2.11/1.13.6/flink-streaming-scala_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-table-runtime-blink_2.11/1.13.6/flink-table-runtime-blink_2.11-1.13.6.jar:/Users/fabivs/.m2/repository/org/codehaus/janino/janino/3.0.11/janino-3.0.11.jar:/Users/fabivs/.m2/repository/org/codehaus/janino/commons-compiler/3.0.11/commons-compiler-3.0.11.jar:/Users/fabivs/.m2/repository/org/apache/calcite/avatica/avatica-core/1.17.0/avatica-core-1.17.0.jar:/Users/fabivs/.m2/repository/org/slf4j/slf4j-log4j12/1.7.30/slf4j-log4j12-1.7.30.jar:/Users/fabivs/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17.jar:/Users/fabivs/.m2/repository/org/springframework/kafka/spring-kafka/2.7.8/spring-kafka-2.7.8.jar:/Users/fabivs/.m2/repository/org/springframework/spring-context/5.3.11/spring-context-5.3.11.jar:/Users/fabivs/.m2/repository/org/springframework/spring-aop/5.3.11/spring-aop-5.3.11.jar:/Users/fabivs/.m2/repository/org/springframework/spring-beans/5.3.11/spring-beans-5.3.11.jar:/Users/fabivs/.m2/repository/org/springframework/spring-core/5.3.11/spring-core-5.3.11.jar:/Users/fabivs/.m2/repository/org/springframework/spring-jcl/5.3.11/spring-jcl-5.3.11.jar:/Users/fabivs/.m2/repository/org/springframework/spring-expression/5.3.11/spring-expression-5.3.11.jar:/Users/fabivs/.m2/repository/org/springframework/spring-messaging/5.3.11/spring-messaging-5.3.11.jar:/Users/fabivs/.m2/repository/org/springframework/spring-tx/5.3.11/spring-tx-5.3.11.jar:/Users/fabivs/.m2/repository/org/springframework/retry/spring-retry/1.3.1/spring-retry-1.3.1.jar:/Users/fabivs/.m2/repository/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar:/Users/fabivs/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/Users/fabivs/.m2/repository/org/apache/logging/log4j/log4j-to-slf4j/2.14.0/log4j-to-slf4j-2.14.0.jar:/Users/fabivs/.m2/repository/org/apache/logging/log4j/log4j-api/2.14.0/log4j-api-2.14.0.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-common/3.2.2/hadoop-common-3.2.2.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-annotations/3.2.2/hadoop-annotations-3.2.2.jar:/Users/fabivs/.m2/repository/com/google/guava/guava/27.0-jre/guava-27.0-jre.jar:/Users/fabivs/.m2/repository/com/google/guava/failureaccess/1.0/failureaccess-1.0.jar:/Users/fabivs/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/Users/fabivs/.m2/repository/org/checkerframework/checker-qual/2.5.2/checker-qual-2.5.2.jar:/Users/fabivs/.m2/repository/com/google/errorprone/error_prone_annotations/2.2.0/error_prone_annotations-2.2.0.jar:/Users/fabivs/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/Users/fabivs/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.17/animal-sniffer-annotations-1.17.jar:/Users/fabivs/.m2/repository/org/apache/httpcomponents/httpclient/4.5.13/httpclient-4.5.13.jar:/Users/fabivs/.m2/repository/org/apache/httpcomponents/httpcore/4.4.13/httpcore-4.4.13.jar:/Users/fabivs/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/Users/fabivs/.m2/repository/commons-net/commons-net/3.6/commons-net-3.6.jar:/Users/fabivs/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/Users/fabivs/.m2/repository/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar:/Users/fabivs/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar:/Users/fabivs/.m2/repository/org/eclipse/jetty/jetty-server/9.4.20.v20190813/jetty-server-9.4.20.v20190813.jar:/Users/fabivs/.m2/repository/org/eclipse/jetty/jetty-http/9.4.20.v20190813/jetty-http-9.4.20.v20190813.jar:/Users/fabivs/.m2/repository/org/eclipse/jetty/jetty-io/9.4.20.v20190813/jetty-io-9.4.20.v20190813.jar:/Users/fabivs/.m2/repository/org/eclipse/jetty/jetty-util/9.4.20.v20190813/jetty-util-9.4.20.v20190813.jar:/Users/fabivs/.m2/repository/org/eclipse/jetty/jetty-servlet/9.4.20.v20190813/jetty-servlet-9.4.20.v20190813.jar:/Users/fabivs/.m2/repository/org/eclipse/jetty/jetty-security/9.4.20.v20190813/jetty-security-9.4.20.v20190813.jar:/Users/fabivs/.m2/repository/org/eclipse/jetty/jetty-webapp/9.4.20.v20190813/jetty-webapp-9.4.20.v20190813.jar:/Users/fabivs/.m2/repository/org/eclipse/jetty/jetty-xml/9.4.20.v20190813/jetty-xml-9.4.20.v20190813.jar:/Users/fabivs/.m2/repository/javax/servlet/jsp/jsp-api/2.1/jsp-api-2.1.jar:/Users/fabivs/.m2/repository/com/sun/jersey/jersey-core/1.19/jersey-core-1.19.jar:/Users/fabivs/.m2/repository/javax/ws/rs/jsr311-api/1.1.1/jsr311-api-1.1.1.jar:/Users/fabivs/.m2/repository/com/sun/jersey/jersey-servlet/1.19/jersey-servlet-1.19.jar:/Users/fabivs/.m2/repository/com/sun/jersey/jersey-json/1.19/jersey-json-1.19.jar:/Users/fabivs/.m2/repository/org/codehaus/jettison/jettison/1.1/jettison-1.1.jar:/Users/fabivs/.m2/repository/com/sun/xml/bind/jaxb-impl/2.2.3-1/jaxb-impl-2.2.3-1.jar:/Users/fabivs/.m2/repository/org/codehaus/jackson/jackson-core-asl/1.9.2/jackson-core-asl-1.9.2.jar:/Users/fabivs/.m2/repository/org/codehaus/jackson/jackson-mapper-asl/1.9.2/jackson-mapper-asl-1.9.2.jar:/Users/fabivs/.m2/repository/org/codehaus/jackson/jackson-jaxrs/1.9.2/jackson-jaxrs-1.9.2.jar:/Users/fabivs/.m2/repository/org/codehaus/jackson/jackson-xc/1.9.2/jackson-xc-1.9.2.jar:/Users/fabivs/.m2/repository/com/sun/jersey/jersey-server/1.19/jersey-server-1.19.jar:/Users/fabivs/.m2/repository/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar:/Users/fabivs/.m2/repository/commons-beanutils/commons-beanutils/1.9.4/commons-beanutils-1.9.4.jar:/Users/fabivs/.m2/repository/org/apache/commons/commons-configuration2/2.1.1/commons-configuration2-2.1.1.jar:/Users/fabivs/.m2/repository/org/apache/commons/commons-text/1.4/commons-text-1.4.jar:/Users/fabivs/.m2/repository/org/apache/avro/avro/1.7.7/avro-1.7.7.jar:/Users/fabivs/.m2/repository/com/thoughtworks/paranamer/paranamer/2.3/paranamer-2.3.jar:/Users/fabivs/.m2/repository/com/google/re2j/re2j/1.1/re2j-1.1.jar:/Users/fabivs/.m2/repository/com/google/protobuf/protobuf-java/2.5.0/protobuf-java-2.5.0.jar:/Users/fabivs/.m2/repository/com/google/code/gson/gson/2.2.4/gson-2.2.4.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-auth/3.2.2/hadoop-auth-3.2.2.jar:/Users/fabivs/.m2/repository/com/nimbusds/nimbus-jose-jwt/7.9/nimbus-jose-jwt-7.9.jar:/Users/fabivs/.m2/repository/com/github/stephenc/jcip/jcip-annotations/1.0-1/jcip-annotations-1.0-1.jar:/Users/fabivs/.m2/repository/net/minidev/json-smart/2.3/json-smart-2.3.jar:/Users/fabivs/.m2/repository/net/minidev/accessors-smart/1.2/accessors-smart-1.2.jar:/Users/fabivs/.m2/repository/org/ow2/asm/asm/5.0.4/asm-5.0.4.jar:/Users/fabivs/.m2/repository/org/apache/curator/curator-framework/2.13.0/curator-framework-2.13.0.jar:/Users/fabivs/.m2/repository/com/jcraft/jsch/0.1.55/jsch-0.1.55.jar:/Users/fabivs/.m2/repository/org/apache/curator/curator-client/2.13.0/curator-client-2.13.0.jar:/Users/fabivs/.m2/repository/org/apache/curator/curator-recipes/2.13.0/curator-recipes-2.13.0.jar:/Users/fabivs/.m2/repository/org/apache/htrace/htrace-core4/4.1.0-incubating/htrace-core4-4.1.0-incubating.jar:/Users/fabivs/.m2/repository/org/apache/commons/commons-compress/1.19/commons-compress-1.19.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerb-simplekdc/1.0.1/kerb-simplekdc-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerb-client/1.0.1/kerb-client-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerby-config/1.0.1/kerby-config-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerb-core/1.0.1/kerb-core-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerby-pkix/1.0.1/kerby-pkix-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerby-asn1/1.0.1/kerby-asn1-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerby-util/1.0.1/kerby-util-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerb-common/1.0.1/kerb-common-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerb-crypto/1.0.1/kerb-crypto-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerb-util/1.0.1/kerb-util-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/token-provider/1.0.1/token-provider-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerb-admin/1.0.1/kerb-admin-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerb-server/1.0.1/kerb-server-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerb-identity/1.0.1/kerb-identity-1.0.1.jar:/Users/fabivs/.m2/repository/org/apache/kerby/kerby-xdr/1.0.1/kerby-xdr-1.0.1.jar:/Users/fabivs/.m2/repository/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar:/Users/fabivs/.m2/repository/com/fasterxml/woodstox/woodstox-core/5.0.3/woodstox-core-5.0.3.jar:/Users/fabivs/.m2/repository/dnsjava/dnsjava/2.1.7/dnsjava-2.1.7.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-client/3.2.2/hadoop-client-3.2.2.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-hdfs-client/3.2.2/hadoop-hdfs-client-3.2.2.jar:/Users/fabivs/.m2/repository/com/squareup/okhttp/okhttp/2.7.5/okhttp-2.7.5.jar:/Users/fabivs/.m2/repository/com/squareup/okio/okio/1.6.0/okio-1.6.0.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-yarn-api/3.2.2/hadoop-yarn-api-3.2.2.jar:/Users/fabivs/.m2/repository/javax/xml/bind/jaxb-api/2.2.11/jaxb-api-2.2.11.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-yarn-client/3.2.2/hadoop-yarn-client-3.2.2.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-mapreduce-client-core/3.2.2/hadoop-mapreduce-client-core-3.2.2.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-yarn-common/3.2.2/hadoop-yarn-common-3.2.2.jar:/Users/fabivs/.m2/repository/com/sun/jersey/jersey-client/1.19/jersey-client-1.19.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.9.10/jackson-module-jaxb-annotations-2.9.10.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/jaxrs/jackson-jaxrs-json-provider/2.9.10/jackson-jaxrs-json-provider-2.9.10.jar:/Users/fabivs/.m2/repository/com/fasterxml/jackson/jaxrs/jackson-jaxrs-base/2.9.10/jackson-jaxrs-base-2.9.10.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-mapreduce-client-jobclient/3.2.2/hadoop-mapreduce-client-jobclient-3.2.2.jar:/Users/fabivs/.m2/repository/org/apache/hadoop/hadoop-mapreduce-client-common/3.2.2/hadoop-mapreduce-client-common-3.2.2.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-common/2.3.5/hbase-common-2.3.5.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-logging/2.3.5/hbase-logging-2.3.5.jar:/Users/fabivs/.m2/repository/org/apache/hbase/thirdparty/hbase-shaded-miscellaneous/3.3.0/hbase-shaded-miscellaneous-3.3.0.jar:/Users/fabivs/.m2/repository/org/apache/hbase/thirdparty/hbase-shaded-gson/3.3.0/hbase-shaded-gson-3.3.0.jar:/Users/fabivs/.m2/repository/org/apache/hbase/thirdparty/hbase-shaded-netty/3.3.0/hbase-shaded-netty-3.3.0.jar:/Users/fabivs/.m2/repository/org/apache/commons/commons-crypto/1.0.0/commons-crypto-1.0.0.jar:/Users/fabivs/.m2/repository/org/apache/yetus/audience-annotations/0.5.0/audience-annotations-0.5.0.jar:/Users/fabivs/.m2/repository/org/apache/flink/flink-hbase_2.11/1.10.3/flink-hbase_2.11-1.10.3.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-server/1.4.3/hbase-server-1.4.3.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-procedure/1.4.3/hbase-procedure-1.4.3.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-common/1.4.3/hbase-common-1.4.3-tests.jar:/Users/fabivs/.m2/repository/com/github/stephenc/findbugs/findbugs-annotations/1.3.9-1/findbugs-annotations-1.3.9-1.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-prefix-tree/1.4.3/hbase-prefix-tree-1.4.3.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-metrics-api/1.4.3/hbase-metrics-api-1.4.3.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-metrics/1.4.3/hbase-metrics-1.4.3.jar:/Users/fabivs/.m2/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar:/Users/fabivs/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar:/Users/fabivs/.m2/repository/org/apache/commons/commons-math/2.2/commons-math-2.2.jar:/Users/fabivs/.m2/repository/io/netty/netty-all/4.1.8.Final/netty-all-4.1.8.Final.jar:/Users/fabivs/.m2/repository/org/apache/htrace/htrace-core/3.1.0-incubating/htrace-core-3.1.0-incubating.jar:/Users/fabivs/.m2/repository/com/lmax/disruptor/3.3.0/disruptor-3.3.0.jar:/Users/fabivs/.m2/repository/junit/junit/4.12/junit-4.12.jar:/Users/fabivs/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-client/2.3.5/hbase-client-2.3.5.jar:/Users/fabivs/.m2/repository/org/apache/hbase/thirdparty/hbase-shaded-protobuf/3.3.0/hbase-shaded-protobuf-3.3.0.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-hadoop-compat/2.3.5/hbase-hadoop-compat-2.3.5.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-hadoop2-compat/2.3.5/hbase-hadoop2-compat-2.3.5.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-protocol-shaded/2.3.5/hbase-protocol-shaded-2.3.5.jar:/Users/fabivs/.m2/repository/org/apache/hbase/hbase-protocol/2.3.5/hbase-protocol-2.3.5.jar:/Users/fabivs/.m2/repository/org/jruby/jcodings/jcodings/1.0.18/jcodings-1.0.18.jar:/Users/fabivs/.m2/repository/org/jruby/joni/joni/2.1.11/joni-2.1.11.jar:/Users/fabivs/.m2/repository/io/dropwizard/metrics/metrics-core/3.2.6/metrics-core-3.2.6.jar:/Users/fabivs/.m2/repository/com/alibaba/fastjson/1.2.75/fastjson-1.2.75.jar:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.internals.AbstractCoordinator][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Sending FindCoordinator request to broker worker1:9092 (id: -1 rack: null)
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:java.library.path=/Users/fabivs/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:java.io.tmpdir=/var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:java.compiler=<NA>
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:os.name=Mac OS X
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:os.arch=x86_64
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:os.version=10.16
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:user.name=fabivs
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:user.home=/Users/fabivs
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:user.dir=/Users/fabivs/myfile/code/bdp-flink
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:os.memory.free=204MB
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:os.memory.max=1820MB
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Client environment:os.memory.total=284MB
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Initiating connection to node worker1:9092 (id: -1 rack: null) using address worker1/47.104.89.120
+[INFO][22-07-03][org.apache.zookeeper.ZooKeeper]Initiating client connection, connectString=master1:2181,master2:2181,utility1:2181 sessionTimeout=90000 watcher=org.apache.hadoop.hbase.zookeeper.ReadOnlyZKClient$$Lambda$801/2104492445@13fc3dd
+[INFO][22-07-03][org.apache.zookeeper.common.X509Util]Setting -D jdk.tls.rejectClientInitiatedRenegotiation=true to disable client-initiated TLS renegotiation
+[INFO][22-07-03][org.apache.zookeeper.ClientCnxnSocket]jute.maxbuffer value is 4194304 Bytes
+[INFO][22-07-03][org.apache.zookeeper.ClientCnxn]zookeeper.request.timeout value is 0. feature enabled=
+[DEBUG][22-07-03][org.apache.kafka.common.network.Selector][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Created socket with SO_RCVBUF = 65800, SO_SNDBUF = 131600, SO_TIMEOUT = 0 to node -1
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Completed connection to node -1. Fetching API versions.
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Initiating API versions fetch from node -1.
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Recorded API versions for node -1: (Produce(0): 0 to 8 [usable: 8], Fetch(1): 0 to 11 [usable: 11], ListOffsets(2): 0 to 5 [usable: 5], Metadata(3): 0 to 9 [usable: 9], LeaderAndIsr(4): 0 to 4 [usable: 4], StopReplica(5): 0 to 2 [usable: 2], UpdateMetadata(6): 0 to 6 [usable: 6], ControlledShutdown(7): 0 to 3 [usable: 3], OffsetCommit(8): 0 to 8 [usable: 8], OffsetFetch(9): 0 to 6 [usable: 6], FindCoordinator(10): 0 to 3 [usable: 3], JoinGroup(11): 0 to 6 [usable: 6], Heartbeat(12): 0 to 4 [usable: 4], LeaveGroup(13): 0 to 4 [usable: 4], SyncGroup(14): 0 to 4 [usable: 4], DescribeGroups(15): 0 to 5 [usable: 5], ListGroups(16): 0 to 3 [usable: 3], SaslHandshake(17): 0 to 1 [usable: 1], ApiVersions(18): 0 to 3 [usable: 3], CreateTopics(19): 0 to 5 [usable: 5], DeleteTopics(20): 0 to 4 [usable: 4], DeleteRecords(21): 0 to 1 [usable: 1], InitProducerId(22): 0 to 2 [usable: 2], OffsetForLeaderEpoch(23): 0 to 3 [usable: 3], AddPartitionsToTxn(24): 0 to 1 [usable: 1], AddOffsetsToTxn(25): 0 to 1 [usable: 1], EndTxn(26): 0 to 1 [usable: 1], WriteTxnMarkers(27): 0 [usable: 0], TxnOffsetCommit(28): 0 to 2 [usable: 2], DescribeAcls(29): 0 to 1 [usable: 1], CreateAcls(30): 0 to 1 [usable: 1], DeleteAcls(31): 0 to 1 [usable: 1], DescribeConfigs(32): 0 to 2 [usable: 2], AlterConfigs(33): 0 to 1 [usable: 1], AlterReplicaLogDirs(34): 0 to 1 [usable: 1], DescribeLogDirs(35): 0 to 1 [usable: 1], SaslAuthenticate(36): 0 to 1 [usable: 1], CreatePartitions(37): 0 to 1 [usable: 1], CreateDelegationToken(38): 0 to 2 [usable: 2], RenewDelegationToken(39): 0 to 1 [usable: 1], ExpireDelegationToken(40): 0 to 1 [usable: 1], DescribeDelegationToken(41): 0 to 1 [usable: 1], DeleteGroups(42): 0 to 2 [usable: 2], ElectLeaders(43): 0 to 2 [usable: 2], IncrementalAlterConfigs(44): 0 to 1 [usable: 1], AlterPartitionReassignments(45): 0 [usable: 0], ListPartitionReassignments(46): 0 [usable: 0], OffsetDelete(47): 0 [usable: 0])
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Sending metadata request MetadataRequestData(topics=[MetadataRequestTopic(name='mem.used')], allowAutoTopicCreation=true, includeClusterAuthorizedOperations=false, includeTopicAuthorizedOperations=false) to node worker1:9092 (id: -1 rack: null)
+[DEBUG][22-07-03][org.apache.kafka.clients.Metadata][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Updating last seen epoch from null to 8 for partition mem.used-0
+[INFO][22-07-03][org.apache.kafka.clients.Metadata][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Cluster ID: w6wKIiBSR8Sv1AUq2edUOA
+[DEBUG][22-07-03][org.apache.kafka.clients.Metadata][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Updated cluster metadata updateVersion 2 to MetadataCache{clusterId='w6wKIiBSR8Sv1AUq2edUOA', nodes=[worker1.cluster:9092 (id: 1 rack: null), worker2cluster:9092 (id: 2 rack: null), worker3.cluster:9092 (id: 3 rack: null)], partitions=[PartitionInfoAndEpoch{partitionInfo=Partition(topic = mem.used, partition = 0, leader = 2, replicas = [2], isr = [2], offlineReplicas = []), epoch=8}], controller=worker2cluster:9092 (id: 2 rack: null)}
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.internals.AbstractCoordinator][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Received FindCoordinator response ClientResponse(receivedTimeMs=1656818130445, latencyMs=112, disconnected=false, requestHeader=RequestHeader(apiKey=FIND_COORDINATOR, apiVersion=3, clientId=consumer-metric_consumer_g-3, correlationId=0), responseBody=FindCoordinatorResponseData(throttleTimeMs=0, errorCode=0, errorMessage='NONE', nodeId=2, host='worker2cluster', port=9092))
+[INFO][22-07-03][org.apache.kafka.clients.consumer.internals.AbstractCoordinator][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Discovered group coordinator worker2cluster:9092 (id: 2147483645 rack: null)
+[DEBUG][22-07-03][org.apache.kafka.clients.NetworkClient][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Initiating connection to node worker2cluster:9092 (id: 2147483645 rack: null) using address worker2cluster/47.104.108.98
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Fetching committed offsets for partitions: [mem.used-0]
+[DEBUG][22-07-03][org.apache.zookeeper.SaslServerPrincipal]Canonicalized address to master1.cluster
+[INFO][22-07-03][org.apache.zookeeper.ClientCnxn]Opening socket connection to server master1/118.190.209.213:2181. Will not attempt to authenticate using SASL (unknown error)
+[INFO][22-07-03][org.apache.zookeeper.ClientCnxn]Socket connection established, initiating session, client: /192.168.3.92:50970, server: master1/118.190.209.213:2181
+[DEBUG][22-07-03][org.apache.zookeeper.ClientCnxn]Session establishment request sent on master1/118.190.209.213:2181
+[INFO][22-07-03][org.apache.zookeeper.ClientCnxn]Session establishment complete on server master1/118.190.209.213:2181, sessionid = 0x101591565550005, negotiated timeout = 40000
+[DEBUG][22-07-03][org.apache.zookeeper.ClientCnxn]Reading reply sessionid:0x101591565550005, packet:: clientPath:/hbase/hbaseid serverPath:/hbase/hbaseid finished:false header:: 1,4  replyHeader:: 1,81605001032,0  request:: '/hbase/hbaseid,F  response:: #ffffffff000146d61737465723a31363030306effffffd2ffffffac57ffffffa31c1bffffffd450425546a2435623632316435312d376363372d343162362d396438632d336662646463326230303833,s{47244640348,73014444056,1646900261205,1650525792431,20,0,0,0,67,0,47244640348} 
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.logging.InternalLoggerFactory]Using SLF4J as the default logging framework
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.ResourceLeakDetector]-Dorg.apache.hbase.thirdparty.io.netty.leakDetection.level: simple
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.ResourceLeakDetector]-Dorg.apache.hbase.thirdparty.io.netty.leakDetection.targetRecords: 4
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.ResourceLeakDetectorFactory]Loaded default ResourceLeakDetector: org.apache.hbase.thirdparty.io.netty.util.ResourceLeakDetector@56ceb71
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent]Platform: MacOS
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent0]-Dio.netty.noUnsafe: false
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent0]Java version: 8
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent0]sun.misc.Unsafe.theUnsafe: available
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent0]sun.misc.Unsafe.copyMemory: available
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent0]java.nio.Buffer.address: available
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent0]direct buffer constructor: available
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent0]java.nio.Bits.unaligned: available, true
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent0]jdk.internal.misc.Unsafe.allocateUninitializedArray(int): unavailable prior to Java9
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent0]java.nio.DirectByteBuffer.<init>(long, int): available
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent]sun.misc.Unsafe: available
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent]-Dio.netty.tmpdir: /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T (java.io.tmpdir)
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent]-Dio.netty.bitMode: 64 (sun.arch.data.model)
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent]-Dio.netty.maxDirectMemory: 1908932608 bytes
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent]-Dio.netty.uninitializedArrayAllocationThreshold: -1
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.CleanerJava6]java.nio.ByteBuffer.cleaner(): available
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent]-Dio.netty.noPreferDirect: false
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.PlatformDependent]org.jctools-core.MpscChunkedArrayQueue: available
+[DEBUG][22-07-03][org.apache.hadoop.hbase.util.ClassSize]Using Unsafe to estimate memory layout
+[DEBUG][22-07-03][org.apache.hadoop.hbase.ipc.AbstractRpcClient]Codec=org.apache.hadoop.hbase.codec.KeyValueCodec@4a707a46, compressor=null, tcpKeepAlive=true, tcpNoDelay=true, connectTO=10000, readTO=20000, writeTO=60000, minIdleTimeBeforeClose=120000, maxRetries=0, fallbackAllowed=false, bind address=null
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.channel.MultithreadEventLoopGroup]-Dio.netty.eventLoopThreads: 16
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.InternalThreadLocalMap]-Dio.netty.threadLocalMap.stringBuilder.initialSize: 1024
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.util.internal.InternalThreadLocalMap]-Dio.netty.threadLocalMap.stringBuilder.maxSize: 4096
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.channel.nio.NioEventLoop]-Dio.netty.noKeySetOptimization: false
+[DEBUG][22-07-03][org.apache.hbase.thirdparty.io.netty.channel.nio.NioEventLoop]-Dio.netty.selectorAutoRebuildThreshold: 512
+[DEBUG][22-07-03][org.apache.flink.streaming.api.operators.BackendRestorerProcedure]Creating operator state backend for StreamMap_4bf7c1955ffe56e2106d666433eaf137_(1/1) with empty state.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.RecoveredInputChannel]Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622)/InputChannelInfo{gateIdx=0, inputChannelIdx=0} finished recovering input.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.RecoveredInputChannel]Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622)/InputChannelInfo{gateIdx=1, inputChannelIdx=0} finished recovering input.
+[INFO][22-07-03][org.apache.flink.runtime.taskmanager.Task]Map -> Sink: Unnamed (1/1)#0 (20605f8f8677c63d5a94dc1c4e609622) switched from INITIALIZING to RUNNING.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.SingleInputGate]Converting recovered input channels (1 channels)
+[INFO][22-07-03][org.apache.flink.runtime.executiongraph.ExecutionGraph]Map -> Sink: Unnamed (1/1) (20605f8f8677c63d5a94dc1c4e609622) switched from INITIALIZING to RUNNING.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.ChannelStatePersister]stopPersisting -1, lastSeenBarrier = -1 (COMPLETED) @ InputChannelInfo{gateIdx=0, inputChannelIdx=0}
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.LocalInputChannel]LocalInputChannel [c85acc314d9c64e420a08e5c9ec8762e#0@c1929b637649322a9628ce0d6931db7c]: Requesting LOCAL subpartition 0 of partition c85acc314d9c64e420a08e5c9ec8762e#0@c1929b637649322a9628ce0d6931db7c. ChannelStatePersister(lastSeenBarrier=-1 (COMPLETED)}
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResultPartitionManager]Requesting subpartition 0 of PipelinedResultPartition c85acc314d9c64e420a08e5c9ec8762e#0@c1929b637649322a9628ce0d6931db7c [PIPELINED_BOUNDED, 1 subpartitions, 2 pending consumptions].
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.PipelinedSubpartition]Source: Custom Source (1/1)#0 (c1929b637649322a9628ce0d6931db7c): Creating read view for subpartition 0 of partition c85acc314d9c64e420a08e5c9ec8762e#0@c1929b637649322a9628ce0d6931db7c.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResultPartition]Created PipelinedSubpartitionView(index: 0) of ResultPartition c85acc314d9c64e420a08e5c9ec8762e#0@c1929b637649322a9628ce0d6931db7c
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.SingleInputGate]Converting recovered input channels (1 channels)
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.ChannelStatePersister]stopPersisting -1, lastSeenBarrier = -1 (COMPLETED) @ InputChannelInfo{gateIdx=1, inputChannelIdx=0}
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.consumer.LocalInputChannel]LocalInputChannel [569ca0e3e0e8bc30cee1d363a34bafd7#0@19b2dad99a519110b7a3946481cb045c]: Requesting LOCAL subpartition 0 of partition 569ca0e3e0e8bc30cee1d363a34bafd7#0@19b2dad99a519110b7a3946481cb045c. ChannelStatePersister(lastSeenBarrier=-1 (COMPLETED)}
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResultPartitionManager]Requesting subpartition 0 of PipelinedResultPartition 569ca0e3e0e8bc30cee1d363a34bafd7#0@19b2dad99a519110b7a3946481cb045c [PIPELINED_BOUNDED, 1 subpartitions, 2 pending consumptions].
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.PipelinedSubpartition]Source: Custom Source (1/1)#0 (19b2dad99a519110b7a3946481cb045c): Creating read view for subpartition 0 of partition 569ca0e3e0e8bc30cee1d363a34bafd7#0@19b2dad99a519110b7a3946481cb045c.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResultPartition]Created PipelinedSubpartitionView(index: 0) of ResultPartition 569ca0e3e0e8bc30cee1d363a34bafd7#0@19b2dad99a519110b7a3946481cb045c
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received heartbeat request from 470afc7f9c0490b185ddea38e5a66ceb.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Received heartbeat request from 470afc7f9c0490b185ddea38e5a66ceb.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Received heartbeat from 3ee1f56f6a9a753bb6ea242edef4f791.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Received heartbeat from bbf70228-c10d-44c9-a76c-32a55c424b13.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager]Received slot report from instance b173f5e0f2ce555f173757c186af01cc: SlotReport{SlotStatus{slotID=bbf70228-c10d-44c9-a76c-32a55c424b13_0, allocationID=307f18d88861c97b7562bd4f016786cd, jobID=d4b436f56c9407aa89dd05b7d723b816, resourceProfile=ResourceProfile{taskHeapMemory=1024.000gb (1099511627776 bytes), taskOffHeapMemory=1024.000gb (1099511627776 bytes), managedMemory=128.000mb (134217728 bytes), networkMemory=64.000mb (67108864 bytes)}}}.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResourceManagerPartitionTrackerImpl]Processing cluster partition report from task executor bbf70228-c10d-44c9-a76c-32a55c424b13: PartitionReport{entries=[]}.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received heartbeat request from 3ee1f56f6a9a753bb6ea242edef4f791.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Received heartbeat from bbf70228-c10d-44c9-a76c-32a55c424b13.
+[DEBUG][22-07-03][org.apache.zookeeper.ClientCnxn]Got ping response for sessionid: 0x101591565550005 after 32ms
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Received heartbeat request from 470afc7f9c0490b185ddea38e5a66ceb.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received heartbeat request from 470afc7f9c0490b185ddea38e5a66ceb.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Received heartbeat from 3ee1f56f6a9a753bb6ea242edef4f791.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Received heartbeat from bbf70228-c10d-44c9-a76c-32a55c424b13.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager]Received slot report from instance b173f5e0f2ce555f173757c186af01cc: SlotReport{SlotStatus{slotID=bbf70228-c10d-44c9-a76c-32a55c424b13_0, allocationID=307f18d88861c97b7562bd4f016786cd, jobID=d4b436f56c9407aa89dd05b7d723b816, resourceProfile=ResourceProfile{taskHeapMemory=1024.000gb (1099511627776 bytes), taskOffHeapMemory=1024.000gb (1099511627776 bytes), managedMemory=128.000mb (134217728 bytes), networkMemory=64.000mb (67108864 bytes)}}}.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResourceManagerPartitionTrackerImpl]Processing cluster partition report from task executor bbf70228-c10d-44c9-a76c-32a55c424b13: PartitionReport{entries=[]}.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received heartbeat request from 3ee1f56f6a9a753bb6ea242edef4f791.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Received heartbeat from bbf70228-c10d-44c9-a76c-32a55c424b13.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Received heartbeat request from 470afc7f9c0490b185ddea38e5a66ceb.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received heartbeat request from 470afc7f9c0490b185ddea38e5a66ceb.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Received heartbeat from 3ee1f56f6a9a753bb6ea242edef4f791.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Received heartbeat from bbf70228-c10d-44c9-a76c-32a55c424b13.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager]Received slot report from instance b173f5e0f2ce555f173757c186af01cc: SlotReport{SlotStatus{slotID=bbf70228-c10d-44c9-a76c-32a55c424b13_0, allocationID=307f18d88861c97b7562bd4f016786cd, jobID=d4b436f56c9407aa89dd05b7d723b816, resourceProfile=ResourceProfile{taskHeapMemory=1024.000gb (1099511627776 bytes), taskOffHeapMemory=1024.000gb (1099511627776 bytes), managedMemory=128.000mb (134217728 bytes), networkMemory=64.000mb (67108864 bytes)}}}.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResourceManagerPartitionTrackerImpl]Processing cluster partition report from task executor bbf70228-c10d-44c9-a76c-32a55c424b13: PartitionReport{entries=[]}.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received heartbeat request from 3ee1f56f6a9a753bb6ea242edef4f791.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Received heartbeat from bbf70228-c10d-44c9-a76c-32a55c424b13.
+[DEBUG][22-07-03][org.apache.zookeeper.ClientCnxn]Got ping response for sessionid: 0x101591565550005 after 28ms
+[DEBUG][22-07-03][org.apache.kafka.clients.consumer.internals.ConsumerCoordinator][Consumer clientId=consumer-metric_consumer_g-3, groupId=metric_consumer_g] Fetching committed offsets for partitions: [mem.used-0]
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Received heartbeat request from 470afc7f9c0490b185ddea38e5a66ceb.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received heartbeat request from 470afc7f9c0490b185ddea38e5a66ceb.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Received heartbeat from 3ee1f56f6a9a753bb6ea242edef4f791.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.StandaloneResourceManager]Received heartbeat from bbf70228-c10d-44c9-a76c-32a55c424b13.
+[DEBUG][22-07-03][org.apache.flink.runtime.resourcemanager.slotmanager.DeclarativeSlotManager]Received slot report from instance b173f5e0f2ce555f173757c186af01cc: SlotReport{SlotStatus{slotID=bbf70228-c10d-44c9-a76c-32a55c424b13_0, allocationID=307f18d88861c97b7562bd4f016786cd, jobID=d4b436f56c9407aa89dd05b7d723b816, resourceProfile=ResourceProfile{taskHeapMemory=1024.000gb (1099511627776 bytes), taskOffHeapMemory=1024.000gb (1099511627776 bytes), managedMemory=128.000mb (134217728 bytes), networkMemory=64.000mb (67108864 bytes)}}}.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.network.partition.ResourceManagerPartitionTrackerImpl]Processing cluster partition report from task executor bbf70228-c10d-44c9-a76c-32a55c424b13: PartitionReport{entries=[]}.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Trigger heartbeat request.
+[DEBUG][22-07-03][org.apache.flink.runtime.taskexecutor.TaskExecutor]Received heartbeat request from 3ee1f56f6a9a753bb6ea242edef4f791.
+[DEBUG][22-07-03][org.apache.flink.runtime.jobmaster.JobMaster]Received heartbeat from bbf70228-c10d-44c9-a76c-32a55c424b13.
+[DEBUG][22-07-03][org.apache.zookeeper.ClientCnxn]Got ping response for sessionid: 0x101591565550005 after 25ms
+[INFO][22-07-03][org.apache.flink.runtime.blob.PermanentBlobCache]Shutting down BLOB cache
+[INFO][22-07-03][org.apache.flink.runtime.state.TaskExecutorLocalStateStoresManager]Shutting down TaskExecutorLocalStateStoresManager.
+[DEBUG][22-07-03][org.apache.flink.runtime.io.disk.iomanager.IOManager]Shutting down I/O manager.
+[INFO][22-07-03][org.apache.flink.runtime.blob.TransientBlobCache]Shutting down BLOB cache
+[INFO][22-07-03][org.apache.flink.runtime.blob.BlobServer]Stopped BLOB server at 0.0.0.0:50957
+[INFO][22-07-03][org.apache.flink.runtime.io.disk.FileChannelManagerImpl]FileChannelManager removed spill file directory /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/flink-netty-shuffle-10d8c5bf-76b5-4966-ad87-9845450dba23
+[INFO][22-07-03][org.apache.flink.runtime.io.disk.FileChannelManagerImpl]FileChannelManager removed spill file directory /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/flink-io-c8ebae24-cf96-4078-bd92-242ef985fb3d
+[INFO][22-07-03][org.apache.flink.runtime.filecache.FileCache]removed file cache directory /var/folders/jw/xgr00jzx6vd4jd0fjqkwbs8r0000gn/T/flink-dist-cache-af431a74-befe-46a7-a435-8abf4eafca4b

@@ -16,11 +16,7 @@
             <artifactId>flink-connector-mysql-cdc</artifactId>
             <version>2.0.1</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-streaming-java_2.12</artifactId>
-            <version>1.7.1</version>
-        </dependency>
+
     </dependencies>
 
     <properties>

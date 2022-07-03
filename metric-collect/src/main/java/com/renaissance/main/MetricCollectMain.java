@@ -5,10 +5,7 @@ import com.renaissance.custormseri.KafkaSchema;
 import com.ververica.cdc.connectors.mysql.MySqlSource;
 import com.ververica.cdc.connectors.mysql.table.StartupOptions;
 import com.ververica.cdc.debezium.DebeziumSourceFunction;
-import com.ververica.cdc.debezium.StringDebeziumDeserializationSchema;
-import kafka.utils.Json;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
-import org.apache.flink.streaming.api.collector.selector.OutputSelector;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
@@ -21,8 +18,10 @@ import org.apache.flink.util.OutputTag;
 public class MetricCollectMain {
     public static void main(String[] args) throws Exception {
 
-        final OutputTag<String> memusedtag = new OutputTag<String>("mem.used"){};
-        final OutputTag<String> cpuuseage = new OutputTag<String>("cpu.usage"){};
+        final OutputTag<String> memusedtag = new OutputTag<String>("mem.used") {
+        };
+        final OutputTag<String> cpuuseage = new OutputTag<String>("cpu.usage") {
+        };
 
         String hostname = "master1";
         if (args.length > 0) {
@@ -31,6 +30,8 @@ public class MetricCollectMain {
         }
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.enableCheckpointing(10000);
+
 
         DebeziumSourceFunction<String> metricCdc = MySqlSource.<String>builder()
                 .hostname(hostname)
@@ -48,14 +49,20 @@ public class MetricCollectMain {
         SingleOutputStreamOperator<String> mainStream = metricCdcStream.process(new ProcessFunction<String, String>() {
             @Override
             public void processElement(String metric, ProcessFunction<String, String>.Context context, Collector<String> collector) throws Exception {
-                JSONObject metricjson = (JSONObject) JSONObject.parse(metric);
 
-                Object name = metricjson.get("name");
-                if (name != null) {
+                JSONObject metricjson = (JSONObject) JSONObject.parse(metric);
+                JSONObject after = (JSONObject) JSONObject.parse(metricjson.getString("after"));
+
+                String name = null;
+                if (after.containsKey("name")) {
+
+                    name = (String) after.get("name");
+
                     if (name.equals("mem.used"))
-                        context.output(memusedtag, metric);
+                        context.output(memusedtag, after.toJSONString());
                     if (name.equals("cpu.usage"))
-                        context.output(cpuuseage, metric);
+                        context.output(cpuuseage, after.toJSONString());
+
                 }
                 collector.collect(metric);
             }
@@ -85,7 +92,7 @@ public class MetricCollectMain {
 
         memusedStream.print("memused:");
         cpuusageStream.print("cpuusage:");
-        metricCdcStream.print("metriccdc:");
+
 
         env.execute();
 
