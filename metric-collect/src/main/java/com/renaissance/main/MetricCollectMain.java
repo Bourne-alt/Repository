@@ -94,7 +94,7 @@ public class MetricCollectMain {
         cpuusageStream.print("cpuusage:");
 
 
-        env.execute();
+        env.execute("metriccollect");
 
 
     }
