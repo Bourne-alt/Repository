@@ -1,13 +1,21 @@
 package renaissance.bean;
 
 public class AlertBean {
-//{"hostname":"svr1002","lastvalue":"10","name":"cpu.usage","id":1734528,"value":92,"timestamp":1657943471}
     private String id;
     private String hostname;
     private String timestamp;
     private String value;
     private String lastvalue;
     private String diffValue;
+    private String color;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public String getId() {
         return id;
@@ -66,6 +74,7 @@ public class AlertBean {
                 ", value='" + value + '\'' +
                 ", lastvalue='" + lastvalue + '\'' +
                 ", diffValue='" + diffValue + '\'' +
+                ", color='" + color + '\'' +
                 '}';
     }
 }

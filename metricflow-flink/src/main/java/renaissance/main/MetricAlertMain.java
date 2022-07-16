@@ -2,25 +2,34 @@ package renaissance.main;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.mysql.jdbc.Connection;
 import com.ververica.cdc.connectors.mysql.MySqlSource;
 import com.ververica.cdc.debezium.StringDebeziumDeserializationSchema;
+import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.api.common.time.Time;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.windowing.ProcessAllWindowFunction;
+import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import renaissance.bean.AlertBean;
+import renaissance.profunc.AlertToBeanMap;
 import renaissance.profunc.CpuusedAlertFunction;
+import renaissance.sink.AlertMetricSink;
+import renaissance.utils.JdbcUtils;
 
 import java.util.Properties;
 
 public class MetricAlertMain {
     public static void main(String[] args) throws Exception {
-int para=2;
-        if(args.length>0){
-            para=Integer.parseInt(args[0]);
+        int para = 2;
+        if (args.length > 0) {
+            para = Integer.parseInt(args[0]);
         }
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
@@ -49,13 +58,15 @@ int para=2;
             }
         });
 
-        SingleOutputStreamOperator<String> alertStream = memUsedKeyedStream.process(new CpuusedAlertFunction()).setParallelism(2);
+        SingleOutputStreamOperator<String> alertStream = memUsedKeyedStream.process(new CpuusedAlertFunction());
+        SingleOutputStreamOperator<AlertBean> alertBeanStream = alertStream.map(new AlertToBeanMap());
+
+        alertBeanStream.addSink(new AlertMetricSink());
 
 
         alertStream.print();
 
         env.execute("AlertStream");
-
 
 
     }

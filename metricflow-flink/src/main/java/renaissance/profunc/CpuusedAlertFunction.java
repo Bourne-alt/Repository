@@ -10,7 +10,7 @@ import org.apache.flink.util.Collector;
 
 public class CpuusedAlertFunction extends KeyedProcessFunction<String,String,String>  {
 
-    int threshold=200;
+    int threshold=70;
 
     //存储最近一次键值分区状态value值
     private ValueState<String> lastValueState;
