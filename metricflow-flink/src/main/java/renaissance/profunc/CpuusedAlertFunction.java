@@ -10,7 +10,7 @@ import org.apache.flink.util.Collector;
 
 public class CpuusedAlertFunction extends KeyedProcessFunction<String,String,String>  {
 
-    int threshold=80;
+    int threshold=200;
 
     //存储最近一次键值分区状态value值
     private ValueState<String> lastValueState;
@@ -50,6 +50,7 @@ public class CpuusedAlertFunction extends KeyedProcessFunction<String,String,Str
         int diffValue = Integer.parseInt(currValue) - Integer.parseInt(value);
         if(diffValue>threshold){
             jsonObject.put("lastvalue",value);
+            jsonObject.put("diffValue",diffValue);
             collector.collect(jsonObject.toJSONString());
         }
 

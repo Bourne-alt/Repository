@@ -18,10 +18,13 @@ import java.util.Properties;
 
 public class MetricAlertMain {
     public static void main(String[] args) throws Exception {
-
+int para=2;
+        if(args.length>0){
+            para=Integer.parseInt(args[0]);
+        }
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        env.setParallelism(2);
+        env.setParallelism(para);
         env.enableCheckpointing(10000l);
 
 
@@ -46,7 +49,9 @@ public class MetricAlertMain {
             }
         });
 
-        SingleOutputStreamOperator<String> alertStream = memUsedKeyedStream.process(new CpuusedAlertFunction());
+        SingleOutputStreamOperator<String> alertStream = memUsedKeyedStream.process(new CpuusedAlertFunction()).setParallelism(2);
+
+
         alertStream.print();
 
         env.execute("AlertStream");
