@@ -36,7 +36,7 @@ public class AlertMetricSink extends TwoPhaseCommitSinkFunction<AlertBean, Conne
                 , "Bdpp1234!"
         );
         conn.setAutoCommit(false);
-        String sql = "insert into alert_realtime (id,hostname,value,timestamp,lastvalue,diffvalue,alertlevel,color,etl_time) values (?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into alert_realtime (id,hostname,value,timestamp,lastvalue,diffvalue,color,etl_time) values (?,?,?,?,?,?,?,?)";
         ps = conn.prepareStatement(sql);
 
     }
