@@ -55,16 +55,12 @@ public class AlertMetricSink extends TwoPhaseCommitSinkFunction<AlertBean, Conne
         ps.setString(7,alertBean.getColor());
         ps.setString(8,date);
 
-        ps.addBatch();
-        batch++;
-        if(batch>=50){
+//        ps.addBatch();
+//        batch++;
+//        if(batch>=50){
             ps.execute();
-            batch=0;
-        }
-
-
-
-
+//            batch=0;
+//        }
     }
 
     @Override
