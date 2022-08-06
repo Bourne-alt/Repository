@@ -2,26 +2,22 @@ package renaissance.main;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.mysql.jdbc.Connection;
-import com.ververica.cdc.connectors.mysql.MySqlSource;
-import com.ververica.cdc.debezium.StringDebeziumDeserializationSchema;
-import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
-import org.apache.flink.api.common.time.Time;
 import org.apache.flink.api.java.functions.KeySelector;
+import org.apache.flink.streaming.api.TimeCharacteristic;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.functions.windowing.ProcessAllWindowFunction;
-import org.apache.flink.streaming.api.windowing.windows.GlobalWindow;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import renaissance.bean.AlertBean;
+import renaissance.common.CpuUseagePeriodAssignTimestamp;
 import renaissance.profunc.AlertToBeanMap;
+import renaissance.profunc.CpuUsageHighAndLowAlertFunction;
 import renaissance.profunc.CpuusedAlertFunction;
 import renaissance.sink.AlertMetricSink;
-import renaissance.utils.JdbcUtils;
 
 import java.util.Properties;
 
@@ -35,6 +31,7 @@ public class MetricAlertMain {
 
         env.setParallelism(para);
         env.enableCheckpointing(10000l);
+        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
 
         //source:kafka
@@ -45,11 +42,11 @@ public class MetricAlertMain {
         kafkaProp.setProperty("auto.offset.reset", "earliest");
         kafkaProp.setProperty("group.id", "metric_consumer_g");
 
-        FlinkKafkaConsumer<String> memUsed = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProp);
+        FlinkKafkaConsumer<String> cpuUsage = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProp);
 
-        DataStreamSource<String> memUsedStreaming = env.addSource(memUsed);
-        KeyedStream<String, String> memUsedKeyedStream
-                = memUsedStreaming.keyBy(new KeySelector<String, String>() {
+        DataStreamSource<String> cpuUsageStreaming = env.addSource(cpuUsage);
+        KeyedStream<String, String> cpuUsagesKeyedStream
+                = cpuUsageStreaming.keyBy(new KeySelector<String, String>() {
             @Override
             public String getKey(String s) throws Exception {
                 JSONObject jsonObject = new JSONObject(JSON.parseObject(s));
@@ -58,9 +55,22 @@ public class MetricAlertMain {
             }
         });
 
-        SingleOutputStreamOperator<String> alertStream = memUsedKeyedStream.process(new CpuusedAlertFunction());
+        //transaction
+        SingleOutputStreamOperator<String> alertStream = cpuUsagesKeyedStream.process(new CpuusedAlertFunction());
         SingleOutputStreamOperator<AlertBean> alertBeanStream = alertStream.map(new AlertToBeanMap());
 
+        /**
+         * 窗口函数 统计5分钟窗口最大值最小值 结果写入mysql
+         */
+
+        SingleOutputStreamOperator<String> cpuUsageHighAndLowString = cpuUsagesKeyedStream.assignTimestampsAndWatermarks(new CpuUseagePeriodAssignTimestamp())
+                .windowAll(TumblingEventTimeWindows.of(Time.minutes(5)))
+                .process(new CpuUsageHighAndLowAlertFunction());
+
+        cpuUsageHighAndLowString.print("cpuUsageHighAndLowString");
+
+
+        //sink
         alertBeanStream.addSink(new AlertMetricSink());
 
 
