@@ -38,6 +38,7 @@ public class CpuUsageHighAndLowAlertFunction extends ProcessAllWindowFunction<St
         bean.setStartTime(String.valueOf(startTime));
         bean.setEndTime(String.valueOf(endTime));
         bean.setHostname(hostName);
+        System.out.println("cpuusagehighandlowbean:"+ bean);
 
         out.collect(bean);
 

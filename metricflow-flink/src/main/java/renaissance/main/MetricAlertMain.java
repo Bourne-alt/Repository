@@ -71,18 +71,19 @@ public class MetricAlertMain {
          * 窗口函数 统计5分钟窗口最大值最小值 结果写入mysql
          */
 
-        logger.info("开始窗口函数处理");
-        SingleOutputStreamOperator<CpuUseageHighAndLowBean> cpuUsageHighAndLowString = cpuUsagesKeyedStream.assignTimestampsAndWatermarks(new CpuUseagePeriodAssignTimestamp())
-                .windowAll(TumblingEventTimeWindows.of(Time.minutes(5)))
+        // {"hostname":"svr1002","name":"cpu.usage","id":1416798,"value":4,"timestamp":1656893846000}}
+
+        SingleOutputStreamOperator<CpuUseageHighAndLowBean> cpuUsageHighAndLowString = cpuUsageStreaming.assignTimestampsAndWatermarks(new CpuUseagePeriodAssignTimestamp())
+                .windowAll(TumblingEventTimeWindows.of(Time.seconds(30)))
                 .process(new CpuUsageHighAndLowAlertFunction());
+
 
         cpuUsageHighAndLowString.print("cpuUsageHighAndLowString");
 
-
         //sink
-        logger.info("sink");
+
         alertBeanStream.addSink(new AlertMetricSink());
-        logger.info("开始写入mysql");
+
         cpuUsageHighAndLowString.addSink(new CpuUsageHighAndLowSink());
         alertStream.print();
 
