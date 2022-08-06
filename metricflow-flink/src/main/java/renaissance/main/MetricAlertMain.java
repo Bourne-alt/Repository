@@ -2,6 +2,7 @@ package renaissance.main;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.streaming.api.TimeCharacteristic;
@@ -13,16 +14,21 @@ import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindo
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import renaissance.bean.AlertBean;
+import renaissance.bean.CpuUseageHighAndLowBean;
 import renaissance.common.CpuUseagePeriodAssignTimestamp;
 import renaissance.profunc.AlertToBeanMap;
 import renaissance.profunc.CpuUsageHighAndLowAlertFunction;
 import renaissance.profunc.CpuusedAlertFunction;
 import renaissance.sink.AlertMetricSink;
+import renaissance.sink.CpuUsageHighAndLowSink;
 
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class MetricAlertMain {
+
     public static void main(String[] args) throws Exception {
+        Logger logger = Logger.getLogger("renaissance.main.MetricAlertMain");
         int para = 2;
         if (args.length > 0) {
             para = Integer.parseInt(args[0]);
@@ -44,6 +50,7 @@ public class MetricAlertMain {
 
         FlinkKafkaConsumer<String> cpuUsage = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProp);
 
+        logger.info("source");
         DataStreamSource<String> cpuUsageStreaming = env.addSource(cpuUsage);
         KeyedStream<String, String> cpuUsagesKeyedStream
                 = cpuUsageStreaming.keyBy(new KeySelector<String, String>() {
@@ -56,6 +63,7 @@ public class MetricAlertMain {
         });
 
         //transaction
+        logger.info("transaction");
         SingleOutputStreamOperator<String> alertStream = cpuUsagesKeyedStream.process(new CpuusedAlertFunction());
         SingleOutputStreamOperator<AlertBean> alertBeanStream = alertStream.map(new AlertToBeanMap());
 
@@ -63,7 +71,8 @@ public class MetricAlertMain {
          * 窗口函数 统计5分钟窗口最大值最小值 结果写入mysql
          */
 
-        SingleOutputStreamOperator<String> cpuUsageHighAndLowString = cpuUsagesKeyedStream.assignTimestampsAndWatermarks(new CpuUseagePeriodAssignTimestamp())
+        logger.info("开始窗口函数处理");
+        SingleOutputStreamOperator<CpuUseageHighAndLowBean> cpuUsageHighAndLowString = cpuUsagesKeyedStream.assignTimestampsAndWatermarks(new CpuUseagePeriodAssignTimestamp())
                 .windowAll(TumblingEventTimeWindows.of(Time.minutes(5)))
                 .process(new CpuUsageHighAndLowAlertFunction());
 
@@ -71,9 +80,10 @@ public class MetricAlertMain {
 
 
         //sink
+        logger.info("sink");
         alertBeanStream.addSink(new AlertMetricSink());
-
-
+        logger.info("开始写入mysql");
+        cpuUsageHighAndLowString.addSink(new CpuUsageHighAndLowSink());
         alertStream.print();
 
         env.execute("AlertStream");

@@ -65,6 +65,7 @@ public class AlertMetricSink extends TwoPhaseCommitSinkFunction<AlertBean, Conne
 
     @Override
     protected Connection beginTransaction() throws Exception {
+
         return null;
     }
 
@@ -76,7 +77,9 @@ public class AlertMetricSink extends TwoPhaseCommitSinkFunction<AlertBean, Conne
 
     @Override
     protected void commit(Connection connection) {
+
         try {
+            if (conn!=null)
             conn.commit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,6 +89,7 @@ public class AlertMetricSink extends TwoPhaseCommitSinkFunction<AlertBean, Conne
     @Override
     protected void abort(Connection connection) {
         try {
+            if(conn!=null)
             conn.rollback();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -100,6 +104,6 @@ public class AlertMetricSink extends TwoPhaseCommitSinkFunction<AlertBean, Conne
         if(ps!=null){
             ps.close();
         }
-        super.close();
+//        super.close();
     }
 }
