@@ -20,7 +20,7 @@ public class CpuUsageHighAndLowAlertFunction extends ProcessAllWindowFunction<St
         long endTime = context.window().getEnd();
         long startTime = context.window().getStart();
         Integer high=0;
-        Integer low = 0;
+        Integer low = Integer.MAX_VALUE;
         String hostName="null";
         while(eles.hasNext()){
             // {"id":972795,"name":"mem.used","hostname":"svr1002","value":9686,"timestamp":1655012826}

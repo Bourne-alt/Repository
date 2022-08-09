@@ -11,6 +11,7 @@ import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import renaissance.bean.AlertBean;
@@ -49,9 +50,12 @@ public class MetricAlertMain {
         kafkaProp.setProperty("group.id", "metric_consumer_g");
 
         FlinkKafkaConsumer<String> cpuUsage = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProp);
+        FlinkKafkaConsumer<String> memUsed = new FlinkKafkaConsumer<>("mem.used", SimpleStringSchema.class.newInstance(), kafkaProp);
 
-        logger.info("source");
+
+
         DataStreamSource<String> cpuUsageStreaming = env.addSource(cpuUsage);
+        DataStreamSource<String> memUseStreaming = env.addSource(memUsed);
         KeyedStream<String, String> cpuUsagesKeyedStream
                 = cpuUsageStreaming.keyBy(new KeySelector<String, String>() {
             @Override
@@ -63,7 +67,7 @@ public class MetricAlertMain {
         });
 
         //transaction
-        logger.info("transaction");
+
         SingleOutputStreamOperator<String> alertStream = cpuUsagesKeyedStream.process(new CpuusedAlertFunction());
         SingleOutputStreamOperator<AlertBean> alertBeanStream = alertStream.map(new AlertToBeanMap());
 
@@ -73,18 +77,19 @@ public class MetricAlertMain {
 
         // {"hostname":"svr1002","name":"cpu.usage","id":1416798,"value":4,"timestamp":1656893846000}}
 
-        SingleOutputStreamOperator<CpuUseageHighAndLowBean> cpuUsageHighAndLowString = cpuUsageStreaming.assignTimestampsAndWatermarks(new CpuUseagePeriodAssignTimestamp())
-                .windowAll(TumblingEventTimeWindows.of(Time.seconds(30)))
+        SingleOutputStreamOperator<CpuUseageHighAndLowBean> memUseeHighAndLowString = memUseStreaming
+                .assignTimestampsAndWatermarks(new CpuUseagePeriodAssignTimestamp())
+                .windowAll(TumblingEventTimeWindows.of(Time.minutes(3)))
                 .process(new CpuUsageHighAndLowAlertFunction());
 
 
-        cpuUsageHighAndLowString.print("cpuUsageHighAndLowString");
+        memUseeHighAndLowString.print("memUseeHighAndLowString");
 
         //sink
 
         alertBeanStream.addSink(new AlertMetricSink());
 
-        cpuUsageHighAndLowString.addSink(new CpuUsageHighAndLowSink());
+        memUseeHighAndLowString.addSink(new CpuUsageHighAndLowSink());
         alertStream.print();
 
         env.execute("AlertStream");
