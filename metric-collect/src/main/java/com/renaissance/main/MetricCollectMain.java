@@ -39,6 +39,7 @@ public class MetricCollectMain {
                 .password("Bdpp1234!")
                 .username("root")
                 .databaseList("bdp_metric")
+                .tableList("bdp_metric.metric")
                 .deserializer(new KafkaSchema())
                 .startupOptions(StartupOptions.latest())
                 .build();

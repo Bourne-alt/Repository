@@ -18,17 +18,24 @@ public class CpuUseagePeriodAssignTimestamp implements AssignerWithPeriodicWater
     public Watermark getCurrentWatermark() {
        return new Watermark(maxTs-bound);
     }
-
+//{"created_time":"2022-07-03T15:57:04Z","hostname":"svr1001","id":22800,"message":"free space warning (mb) for host disk","timenew":1660358547478,"status":"CLOSED","timestamp":1656845791000}
 
     @Override
     public long extractTimestamp(String element, long recordTimestamp) {
         JSONObject ele =  (JSONObject) JSONObject.parse(element);
-        String timestamp=ele.getString("timestamp");
-        if(timestamp.length()>10){
-            timestamp=timestamp.substring(0,timestamp.length()-3);
-        }
+        System.out.println("CpuUseagePeriodAssign:"+element);
+        String timenew="";
+        if(ele.containsKey("timenew")){
+             timenew=ele.getString("timenew");
 
-        maxTs=Math.max(maxTs,Long.valueOf(timestamp));
+        }else {
+            timenew=String.valueOf(System.currentTimeMillis());
+        }
+//        if(timenew.length()>10){
+//            timenew=timenew.substring(0,timenew.length()-3);
+//        }
+
+        maxTs=Math.max(maxTs,Long.valueOf(timenew));
         //处理超长时间戳字段
 
         System.out.println("当前水位线："+maxTs);

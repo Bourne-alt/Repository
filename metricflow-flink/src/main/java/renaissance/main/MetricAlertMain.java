@@ -46,7 +46,7 @@ public class MetricAlertMain {
         kafkaProp.setProperty("bootstrap.servers", "worker1:9092,worker2:9092,worker3:9092");
         kafkaProp.setProperty("zookeeper.connect", "master1:2181,master2:2181,utility1:2181");
 
-        kafkaProp.setProperty("auto.offset.reset", "earliest");
+        kafkaProp.setProperty("auto.offset.reset", "latest");
         kafkaProp.setProperty("group.id", "metric_consumer_g");
 
         FlinkKafkaConsumer<String> cpuUsage = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProp);
@@ -79,7 +79,7 @@ public class MetricAlertMain {
 
         SingleOutputStreamOperator<CpuUseageHighAndLowBean> memUseeHighAndLowString = memUseStreaming
                 .assignTimestampsAndWatermarks(new CpuUseagePeriodAssignTimestamp())
-                .windowAll(TumblingEventTimeWindows.of(Time.minutes(3)))
+                .windowAll(TumblingEventTimeWindows.of(Time.seconds(30)))
                 .process(new CpuUsageHighAndLowAlertFunction());
 
 

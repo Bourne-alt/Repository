@@ -12,11 +12,11 @@ import java.util.Iterator;
 public class CpuUsageHighAndLowAlertFunction extends ProcessAllWindowFunction<String, CpuUseageHighAndLowBean, TimeWindow> {
     @Override
     public void process(ProcessAllWindowFunction<String, CpuUseageHighAndLowBean, TimeWindow>.Context context, Iterable<String> elements, Collector<CpuUseageHighAndLowBean> out) throws Exception {
+        int id=1;
         System.out.println("窗口函数开始处理：");
         Iterator<String> eles = elements.iterator();
 
         CpuUseageHighAndLowBean bean = new CpuUseageHighAndLowBean();
-        int id=1;
         long endTime = context.window().getEnd();
         long startTime = context.window().getStart();
         Integer high=0;

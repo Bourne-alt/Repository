@@ -24,6 +24,7 @@ public class KafkaSchema implements DebeziumDeserializationSchema<String> {
     @Override
     public void deserialize(SourceRecord sourceRecord, Collector<String> collector) throws Exception {
 
+
         //创建json
         JSONObject result = new JSONObject();
 
@@ -44,6 +45,7 @@ public class KafkaSchema implements DebeziumDeserializationSchema<String> {
             for (Field field : fields) {
                 beforeJson.put(field.name(), before.get(field));
             }
+            beforeJson.put("timenew",System.currentTimeMillis());
 
         }
         result.put("before", beforeJson);
@@ -57,12 +59,16 @@ public class KafkaSchema implements DebeziumDeserializationSchema<String> {
             for (Field field : fields) {
                 afterJson.put(field.name(), after.get(field));
             }
+            afterJson.put("timenew",System.currentTimeMillis());
 
         }
         result.put("after", afterJson);
 
+        System.out.println("after:"+afterJson);
+        System.out.println("before:"+beforeJson);
         Envelope.Operation operation = Envelope.operationFor(sourceRecord);
         result.put("op", operation);
+
 
 
         collector.collect(result.toJSONString());
