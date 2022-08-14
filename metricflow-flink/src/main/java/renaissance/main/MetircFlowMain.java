@@ -26,12 +26,12 @@ public class MetircFlowMain {
         kafkaProps.setProperty("group.id", "metric_consumer_g");
 
         FlinkKafkaConsumer<String> kafkaCpuUse = new FlinkKafkaConsumer<>("mem.used", SimpleStringSchema.class.newInstance(), kafkaProps);
-        FlinkKafkaConsumer<String> kafkaCpuUsage = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProps);
+//        FlinkKafkaConsumer<String> kafkaCpuUsage = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProps);
         DataStreamSource<String> memUsedStream = env.addSource(kafkaCpuUse);
-        DataStreamSource<String> cpuUsageStream = env.addSource(kafkaCpuUsage);
-        DataStream<String> metricStream = memUsedStream.union(cpuUsageStream);
+//        DataStreamSource<String> cpuUsageStream = env.addSource(kafkaCpuUsage);
+//        DataStream<String> metricStream = memUsedStream.union(cpuUsageStream);
 
-        SingleOutputStreamOperator<MetricBean> beanStream = metricStream.map(new MetricBeanMap());
+        SingleOutputStreamOperator<MetricBean> beanStream = memUsedStream.map(new MetricBeanMap());
         beanStream.addSink(new MetricSink());
 
         env.execute("MetricFlowStream");

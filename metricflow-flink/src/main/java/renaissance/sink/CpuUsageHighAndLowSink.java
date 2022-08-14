@@ -31,7 +31,7 @@ public class CpuUsageHighAndLowSink extends TwoPhaseCommitSinkFunction<CpuUseage
     public void open(Configuration parameters) throws Exception {
         super.open(parameters);
         conn = DriverManager.getConnection(
-                "jdbc:mysql://master1:3306/bdp_metric?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true"
+                "jdbc:mysql://loadbalancer1:3306/bdp_metric?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true"
                 , "root"
                 , "Bdpp1234!"
         );
