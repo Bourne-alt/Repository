@@ -8,9 +8,9 @@ import java.sql.SQLException;
 
 public class JdbcUtils {
     private static Connection conn=null;
-    public static Connection getConn() throws SQLException {
+    public static Connection getConn(String databasename) throws SQLException {
         conn = DriverManager.getConnection(
-                "jdbc:mysql://master1:3306/bdp_metric?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true"
+                "jdbc:mysql://loadbalancer1:3306/"+databasename+"?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=false&autoReconnect=true"
                 , "root"
                 , "Bdpp1234!"
         );

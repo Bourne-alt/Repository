@@ -15,8 +15,21 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
 import org.apache.flink.util.Collector;
 import org.apache.flink.util.OutputTag;
 
+import java.util.Properties;
+
 public class MetricCollectMain {
     public static void main(String[] args) throws Exception {
+
+        Properties kafkaProps = new Properties();
+
+
+        kafkaProps.setProperty("bootstrap.servers", "worker1:9092,worker2:9092,worker3:9092");
+        kafkaProps.setProperty("zookeeper.connect", "master1:2181,master2:2181,utility1:2181");
+//        kafkaProps.setProperty("auto.offset.reset", "earliest");
+//        kafkaProps.setProperty("group.id", "metric_consumer_g");
+        kafkaProps.put("max.request.size", 2147483647);
+        kafkaProps.put("buffer.memory", 2147483647);
+        kafkaProps.put("request.timeout.ms", 30000000);
 
         final OutputTag<String> memusedtag = new OutputTag<String>("mem.used") {
         };
@@ -75,15 +88,15 @@ public class MetricCollectMain {
 
         //sink
         FlinkKafkaProducer<String> memusedKafkaSink = new FlinkKafkaProducer<String>(
-                "worker1:9092,worker2:9092,worker3:9092",
                 "mem.used",
                 new SimpleStringSchema()
+                ,kafkaProps
 
         );
         FlinkKafkaProducer<String> cpuusageKafkaSink = new FlinkKafkaProducer<String>(
-                "worker1:9092,worker2:9092,worker3:9092",
                 "cpu.usage",
                 new SimpleStringSchema()
+                ,kafkaProps
 
         );
 

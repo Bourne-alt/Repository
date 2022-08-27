@@ -2,26 +2,26 @@ package renaissance.main;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.functions.JoinFunction;
 import org.apache.flink.api.common.serialization.SimpleStringSchema;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.streaming.api.TimeCharacteristic;
+import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
-import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import renaissance.bean.AlertBean;
 import renaissance.bean.CpuUseageHighAndLowBean;
+import renaissance.bean.MemUsedWithColorBean;
 import renaissance.common.CpuUseagePeriodAssignTimestamp;
-import renaissance.profunc.AlertToBeanMap;
-import renaissance.profunc.CpuUsageHighAndLowAlertFunction;
-import renaissance.profunc.CpuusedAlertFunction;
+import renaissance.profunc.*;
 import renaissance.sink.AlertMetricSink;
 import renaissance.sink.CpuUsageHighAndLowSink;
+import renaissance.source.ThresholdSource;
 
 import java.util.Properties;
 import java.util.logging.Logger;
@@ -52,6 +52,9 @@ public class MetricAlertMain {
         FlinkKafkaConsumer<String> cpuUsage = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProp);
         FlinkKafkaConsumer<String> memUsed = new FlinkKafkaConsumer<>("mem.used", SimpleStringSchema.class.newInstance(), kafkaProp);
 
+        //维表流
+        DataStreamSource<String>  thresholdStream = env.addSource(new ThresholdSource());
+        thresholdStream.print("threshold:");
 
 
         DataStreamSource<String> cpuUsageStreaming = env.addSource(cpuUsage);
@@ -84,6 +87,24 @@ public class MetricAlertMain {
 
 
         memUseeHighAndLowString.print("memUseeHighAndLowString");
+
+        /**
+         * 窗口join  关联维表告警等级
+         */
+
+        DataStream<MemUsedWithColorBean> memUsedWithColorStream = memUseStreaming.join(thresholdStream).where(new KeySelector<String, Object>() {
+            @Override
+            public Object getKey(String s) throws Exception {
+                JSONObject jsonObject = JSONObject.parseObject(s);
+                return jsonObject.getString("name");
+            }
+        }).equalTo(new KeySelector<String, Object>() {
+            @Override
+            public Object getKey(String s) throws Exception {
+                return JSONObject.parseObject(s).getString("metric_name");
+            }
+        }).window(TumblingEventTimeWindows.of(Time.seconds(30))).apply(new Memuse5MinsAlertsFunction())
+                .process(new MemUsedLevelFuntction());
 
         //sink
 
