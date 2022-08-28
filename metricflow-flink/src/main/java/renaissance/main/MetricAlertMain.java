@@ -12,6 +12,7 @@ import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.assigners.TumblingProcessingTimeWindows;
 import org.apache.flink.streaming.api.windowing.time.Time;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
 import renaissance.bean.AlertBean;
@@ -21,6 +22,7 @@ import renaissance.common.CpuUseagePeriodAssignTimestamp;
 import renaissance.profunc.*;
 import renaissance.sink.AlertMetricSink;
 import renaissance.sink.CpuUsageHighAndLowSink;
+import renaissance.sink.MemUsedWithColorSink;
 import renaissance.source.ThresholdSource;
 
 import java.util.Properties;
@@ -30,7 +32,7 @@ public class MetricAlertMain {
 
     public static void main(String[] args) throws Exception {
         Logger logger = Logger.getLogger("renaissance.main.MetricAlertMain");
-        int para = 2;
+        int para = 1;
         if (args.length > 0) {
             para = Integer.parseInt(args[0]);
         }
@@ -53,6 +55,7 @@ public class MetricAlertMain {
         FlinkKafkaConsumer<String> memUsed = new FlinkKafkaConsumer<>("mem.used", SimpleStringSchema.class.newInstance(), kafkaProp);
 
         //维表流
+
         DataStreamSource<String>  thresholdStream = env.addSource(new ThresholdSource());
         thresholdStream.print("threshold:");
 
@@ -103,15 +106,15 @@ public class MetricAlertMain {
             public Object getKey(String s) throws Exception {
                 return JSONObject.parseObject(s).getString("metric_name");
             }
-        }).window(TumblingEventTimeWindows.of(Time.seconds(30))).apply(new Memuse5MinsAlertsFunction())
-                .process(new MemUsedLevelFuntction());
+        }).window(TumblingProcessingTimeWindows.of(Time.minutes(5))).apply(new Memuse5MinsAlertsFunction());
 
         //sink
 
+        memUsedWithColorStream.addSink(new MemUsedWithColorSink());
         alertBeanStream.addSink(new AlertMetricSink());
-
         memUseeHighAndLowString.addSink(new CpuUsageHighAndLowSink());
-        alertStream.print();
+
+
 
         env.execute("AlertStream");
 

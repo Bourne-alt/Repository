@@ -42,6 +42,10 @@ public class ThresholdSource extends RichSourceFunction<String> {
                 ctx.collect(results.toJSONString());
             }
         }
+
+        Thread.sleep(300000);
+        cancel();
+
     }
 
     @Override
