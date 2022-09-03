@@ -34,33 +34,36 @@ public class MemUsedWithColorSink extends TwoPhaseCommitSinkFunction<MemUsedWith
                 , "root"
                 , "Bdpp1234!"
         );
+
+      //  beanMemUsedWithColorBean{id=9806588, hostname='svr1001', alertLev='red', threhUpdateTime='2018-09-01 00:00:00', threhCreateTime='2018-09-01 00:00:00', amberThreshold=5120, value='26647', redThreshold=5760, metricName='mem.used'}
         conn.setAutoCommit(false);
-        String sql = "insert into alert_level_real_time (id,hostname,metricname,alertlev,timehrehupdatetime,threhcreatetime,amberthreshold" +
-                "redthreshold,etltime) values (?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into alert_level_real_time (id,hostname,metricname,alertlev,timehrehupdatetime,threhcreatetime,amberthreshold," +
+                "redthreshold,etltime,value) values (?,?,?,?,?,?,?,?,?,?)";
         ps = conn.prepareStatement(sql);
     }
 
     @Override
     protected void invoke(Connection transaction, MemUsedWithColorBean bean, Context context) throws Exception {
         System.err.println("start invoke.......");
+        System.out.println("bean"+bean.toString());
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
         ps.setInt(1,bean.getId());
         ps.setString(2,bean.getHostname());
         ps.setString(3,bean.getMetricName());
         ps.setString(4,bean.getAlertLev());
-        ps.setString(5,bean.getThrehUpdateTime());
-        ps.setString(6,bean.getThrehCreateTime());
+        ps.setString(5,bean.getThrehUpdateTime()!=null?bean.getThrehUpdateTime():"-");
+        ps.setString(6,bean.getThrehCreateTime()!=null?bean.getThrehCreateTime():"-");
         ps.setInt(7,bean.getAmberThreshold());
         ps.setInt(8,bean.getRedThreshold());
         ps.setString(9,date);
+        ps.setString(10,bean.getValue());
+        ps.addBatch();
 
-
-
-
-//        ps.addBatch();
-//        batch++;
-//        if(batch>=50){
-        ps.execute();
+        batch++;
+        if(batch>=10) {
+            ps.execute();
+            batch=0;
+        }
     }
 
     @Override

@@ -27,8 +27,8 @@ public class ThresholdSource extends RichSourceFunction<String> {
     @Override
     public void run(SourceContext<String> ctx) throws Exception {
 
+        resultSet=preparedStatement.executeQuery();
         while (isRunning){
-            resultSet=preparedStatement.executeQuery();
 
             if(resultSet!=null && resultSet.next()){
                 JSONObject results = new JSONObject();
@@ -38,13 +38,15 @@ public class ThresholdSource extends RichSourceFunction<String> {
                 results.put("red_threshold",resultSet.getString("red_threshold"));
                 results.put("update_time",resultSet.getString("update_time"));
                 results.put("metric_name",resultSet.getString("metric_name"));
-                System.out.println("threshold:"+results.toJSONString());
                 ctx.collect(results.toJSONString());
+                System.out.println("threshold:"+results.toJSONString());
             }
         }
 
-        Thread.sleep(300000);
+
+        Thread.sleep(60*1000L);
         cancel();
+
 
     }
 

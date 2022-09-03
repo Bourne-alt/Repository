@@ -7,6 +7,7 @@ public class MemUsedWithColorBean {
     private String threhUpdateTime;
     private String threhCreateTime;
     private int amberThreshold;
+    private String value;
     private int redThreshold;
     private String metricName;
 
@@ -20,15 +21,19 @@ public class MemUsedWithColorBean {
                 ", threhUpdateTime='" + threhUpdateTime + '\'' +
                 ", threhCreateTime='" + threhCreateTime + '\'' +
                 ", amberThreshold=" + amberThreshold +
+                ", value='" + value + '\'' +
                 ", redThreshold=" + redThreshold +
                 ", metricName='" + metricName + '\'' +
                 '}';
     }
 
+    public String getValue() {
+        return value;
+    }
 
-
-
-
+    public void setValue(String value) {
+        this.value = value;
+    }
 
     public int getId() {
         return id;
