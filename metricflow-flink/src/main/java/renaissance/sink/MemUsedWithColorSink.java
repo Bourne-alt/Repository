@@ -60,7 +60,7 @@ public class MemUsedWithColorSink extends TwoPhaseCommitSinkFunction<MemUsedWith
         ps.addBatch();
 
         batch++;
-        if(batch>=10) {
+        if(batch>=50) {
             ps.execute();
             batch=0;
         }

@@ -53,10 +53,12 @@ public class CpuUsageHighAndLowSink extends TwoPhaseCommitSinkFunction<CpuUseage
         ps.setString(7,date);
 
 
-//        ps.addBatch();
-//        batch++;
-//        if(batch>=50){
-        ps.execute();
+        ps.addBatch();
+        batch++;
+        if(batch>=50) {
+            ps.execute();
+            batch=0;
+        }
     }
 
     @Override

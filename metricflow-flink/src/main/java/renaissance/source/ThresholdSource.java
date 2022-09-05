@@ -15,7 +15,7 @@ public class ThresholdSource extends RichSourceFunction<String> {
     Connection conn=null;
     PreparedStatement preparedStatement=null;
     ResultSet resultSet=null;
-    String sql="select * from metric_threshold where server_id = '2'";
+    String sql="select * from metric_threshold where server_id = '2' and metric_name='mem.used'";
     @Override
     public void open(Configuration parameters) throws Exception {
        conn= JdbcUtils.getConn("bdp_master");
@@ -27,8 +27,8 @@ public class ThresholdSource extends RichSourceFunction<String> {
     @Override
     public void run(SourceContext<String> ctx) throws Exception {
 
-        resultSet=preparedStatement.executeQuery();
         while (isRunning){
+            resultSet=preparedStatement.executeQuery();
 
             if(resultSet!=null && resultSet.next()){
                 JSONObject results = new JSONObject();
@@ -41,12 +41,8 @@ public class ThresholdSource extends RichSourceFunction<String> {
                 ctx.collect(results.toJSONString());
                 System.out.println("threshold:"+results.toJSONString());
             }
+            Thread.sleep(60*1000);
         }
-
-
-        Thread.sleep(60*1000L);
-        cancel();
-
 
     }
 

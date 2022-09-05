@@ -45,7 +45,6 @@ public class AlertMetricSink extends TwoPhaseCommitSinkFunction<AlertBean, Conne
     protected void invoke(Connection connection, AlertBean alertBean, Context context) throws Exception {
         System.err.println("start invoke.......");
         String date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-//insert into alert_realtime (id,hostname,value,timestamp,lastvalue,diffvalue,alertlevel,color,etl_time) values (?,?,?,?,?,?,?,?,?)
         ps.setString(1,alertBean.getId());
         ps.setString(2,alertBean.getHostname());
         ps.setString(3,alertBean.getValue());
@@ -55,12 +54,12 @@ public class AlertMetricSink extends TwoPhaseCommitSinkFunction<AlertBean, Conne
         ps.setString(7,alertBean.getColor());
         ps.setString(8,date);
 
-//        ps.addBatch();
-//        batch++;
-//        if(batch>=50){
+        ps.addBatch();
+        batch++;
+        if(batch>=50){
             ps.execute();
-//            batch=0;
-//        }
+            batch=0;
+        }
     }
 
     @Override

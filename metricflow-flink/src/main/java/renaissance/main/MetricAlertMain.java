@@ -26,6 +26,7 @@ import renaissance.sink.CpuUsageHighAndLowSink;
 import renaissance.sink.MemUsedWithColorSink;
 import renaissance.source.ThresholdSource;
 
+import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
 
@@ -43,8 +44,7 @@ public class MetricAlertMain {
 
         env.setParallelism(para);
         env.enableCheckpointing(10000l);
-        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
-
+//        env.setStreamTimeCharacteristic(TimeCharacteristic.EventTime);
 
 
         //source:kafka
@@ -57,7 +57,7 @@ public class MetricAlertMain {
 
         FlinkKafkaConsumer<String> cpuUsage = new FlinkKafkaConsumer<>("cpu.usage", SimpleStringSchema.class.newInstance(), kafkaProp);
         FlinkKafkaConsumer<String> memUsed = new FlinkKafkaConsumer<>("mem.used", SimpleStringSchema.class.newInstance(), kafkaProp);
-        //告警入表id
+
 
         //维表流
 
@@ -66,8 +66,8 @@ public class MetricAlertMain {
                 new ThresholdSource()).broadcast(thresholdStateDesp);
 
         DataStreamSource<String> cpuUsageStreaming = env.addSource(cpuUsage);
+        DataStreamSource<String> cpuUsageStreamingWindow = env.addSource(memUsed);
         DataStreamSource<String> memUseStreaming = env.addSource(memUsed);
-        memUseStreaming.print("memusedString");
         KeyedStream<String, String> cpuUsagesKeyedStream
                 = cpuUsageStreaming.keyBy(new KeySelector<String, String>() {
             @Override
@@ -87,16 +87,10 @@ public class MetricAlertMain {
          * 窗口函数 统计5分钟窗口最大值最小值 结果写入mysql
          */
 
-        // {"hostname":"svr1002","name":"cpu.usage","id":1416798,"value":4,"timestamp":1656893846000}}
-
-        SingleOutputStreamOperator<CpuUseageHighAndLowBean> memUseeHighAndLowString = memUseStreaming
+        SingleOutputStreamOperator<CpuUseageHighAndLowBean> memUseeHighAndLowString = cpuUsageStreamingWindow
                 .assignTimestampsAndWatermarks(new CpuUseagePeriodAssignTimestamp())
                 .windowAll(TumblingEventTimeWindows.of(Time.seconds(30)))
                 .process(new CpuUsageHighAndLowAlertFunction());
-
-
-        memUseeHighAndLowString.print("memUseeHighAndLowString");
-
         /**
          * 窗口join  关联维表告警等级
          */
@@ -107,70 +101,52 @@ public class MetricAlertMain {
 
                 ReadOnlyBroadcastState<String, String> state = ctx.getBroadcastState(thresholdStateDesp);
                 JSONObject ele = JSON.parseObject(value);
-                String key = ele.getString("name");
-                System.out.println("ele:"+ele);
+
                 MemUsedWithColorBean bean = new MemUsedWithColorBean();
-                //mapstate:{"creation_time":"2018-09-01 00:00:00","update_time":"2018-09-01 00:00:00"
-                // ,"amber_threshold":"80","metric_name":"cpu.usage","red_threshold":"90","server_id":"2"}
-                System.out.println("mapStatmemused:"+state.get(key));
-                if(state.contains(key)){
-                    JSONObject thred = JSON.parseObject(state.get(key));
-                    int amberThreshold = Integer.valueOf(thred.getString("amber_threshold"));
-                    int redThreshold = Integer.valueOf(thred.getString("red_threshold"));
-                    String alertLev = "";
-                    int eleVal = Integer.valueOf(ele.getString("value"));
-                    if (eleVal > amberThreshold && eleVal < redThreshold) {
-                        alertLev = "amber";
-                    } else if (eleVal > redThreshold) {
-                        alertLev = "red";
-                    } else {
-                        alertLev = "green";
-                    }
-                      // {"id":972795,"name":"mem.used","hostname":"svr1002","value":9686,"timestamp":1655012826}
+                System.out.println("mapStatmemused:" + state.get(null));
 
-                    bean.setId(Integer.valueOf(ele.getString("id")));
-                    bean.setHostname(ele.getString("hostname"));
-                    bean.setMetricName(key);
-                    bean.setValue(ele.getString("value"));
-                    bean.setAlertLev(alertLev);
-                    bean.setAmberThreshold(amberThreshold);
-                    bean.setRedThreshold(redThreshold);
-                    bean.setThrehCreateTime(thred.getString("creation_time"));
-                    bean.setThrehUpdateTime(thred.getString("update_time"));
-
-                    out.collect(bean);
+                JSONObject thred = JSON.parseObject(state.get(null));
+                int amberThreshold = Integer.parseInt(thred.getString("amber_threshold"));
+                int redThreshold = Integer.parseInt(thred.getString("red_threshold"));
+                String alertLev ;
+                int eleVal = Integer.valueOf(ele.getString("value"));
+                if (eleVal > amberThreshold && eleVal < redThreshold) {
+                    alertLev = "amber";
+                } else if (eleVal > redThreshold) {
+                    alertLev = "red";
+                } else {
+                    alertLev = "green";
                 }
 
-                // {"id":972795,"name":"mem.used","hostname":"svr1002","value":9686,"timestamp":1655012826}
-//        server_id	amber_threshold	creation_time	red_threshold	update_time	metric_name
-//        2	5120	2018-09-01 00:00:00	5760	2018-09-01 00:00:00	mem.used        memusedJson.put()
+                bean.setId(Integer.valueOf(ele.getString("id")));
+                bean.setHostname(ele.getString("hostname"));
+                bean.setMetricName(ele.getString("name"));
+                bean.setValue(ele.getString("value"));
+                bean.setAlertLev(alertLev);
+                bean.setAmberThreshold(amberThreshold);
+                bean.setRedThreshold(redThreshold);
+                bean.setThrehCreateTime(thred.getString("creation_time"));
+                bean.setThrehUpdateTime(thred.getString("update_time"));
 
-
+                out.collect(bean);
             }
+
 
             @Override
             public void processBroadcastElement(String value, BroadcastProcessFunction<String, String, MemUsedWithColorBean>.Context ctx, Collector<MemUsedWithColorBean> out) throws Exception {
-   //mapstate:{"creation_time":"2018-09-01 00:00:00","update_time":"2018-09-01 00:00:00"
-   // ,"amber_threshold":"80","metric_name":"cpu.usage","red_threshold":"90","server_id":"2"}
-                System.out.println("mapstate1:" + value);
-                JSONObject ele = JSON.parseObject(value);
-                String key="";
-                if(ele.containsKey("metric_name")){
-                    key=ele.getString("metric_name");
-                }
 
+                System.out.println("mapstate1:" + value);
                 BroadcastState<String, String> state = ctx.getBroadcastState(thresholdStateDesp);
-                if(!state.contains(key)){
-                    state.put(key,ele.toString());
-                }
+                state.clear();
+                state.put(null, value.toString());
+                System.out.println("statavalue:" + state.get(null));
+
             }
         });
 
 
         alertBeanStream.addSink(new AlertMetricSink());
         memUseeHighAndLowString.addSink(new CpuUsageHighAndLowSink());
-
-
 
         memusedWithColorStream.print("memusedWithColorStream");
         memusedWithColorStream.addSink(new MemUsedWithColorSink());
